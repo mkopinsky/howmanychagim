@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div class="top">
-      <!-- <img src="./assets/logo.png"> -->
       <h1>How many Chagim?</h1>
       <h2>
         <span class="active">2018</span>
@@ -35,28 +34,20 @@
       </div>
 
       <div class="col-sm-4" v-for="holidays, month in holidays.majorHolidays">
-        <div class="card">
-          <h5 class="card-header">
-            {{ month }}
-          </h5>
-          <div class="card-body">
-            <ul class="days">
-              <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
-                <label>
-                  <input type="checkbox"/>
-                  {{ format(holiday.date) }} 
-                  (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
-                </label>
-              </li>
-            </ul>
-          </div>
-          <div class="card-footer">
-            <span class="total">1</span> weekday, <span class="total">1</span> weekend selected
-          </div>
-          <div class="card-footer">
-            No days selected
-          </div>
-        </div>
+        <b-card
+          :header="month"
+          header-tag="h5"
+          :footer="monthTotal(month)">
+          <ul class="days">
+            <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
+              <label>
+                <input type="checkbox"/>
+                {{ format(holiday.date) }} 
+                (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
+              </label>
+            </li>
+          </ul>
+        </b-card>
       </div>
     </div>
   </div>
@@ -77,6 +68,9 @@ export default {
   methods: {
     format(date) {
       return format(date, 'ddd MMM Do')
+    },
+    monthTotal(month) {
+      return `Total for ${month}: <span class="total">1</span> weekday, <span class="total">1</span> weekend`
     }
   }
 }
