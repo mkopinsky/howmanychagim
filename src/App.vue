@@ -3,14 +3,18 @@
     <div class="top">
       <!-- <img src="./assets/logo.png"> -->
       <h1>How many Chagim?</h1>
-      <h2>2018</h2>
+      <h2>
+        <span class="active">2018</span>
+        <a href="#">2019</a>
+        <a href="#">2020</a>
+      </h2>
     </div>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-4 d-none">
         <div class="card">
-          <div class="card-header">
+          <h5 class="card-header">
             Pesach
-          </div>
+          </h5>
           <div class="card-body">
             <h5 class="card-title">March 31st - April 7, 2018</h5>
             <ul class="days">
@@ -23,67 +27,31 @@
               <li class="yt"><label><input type="checkbox" id="pesach7" checked/> Fri April 6, 2018</label></li>
               <li class="yt"><label><input type="checkbox" id="pesach8" disabled checked /> Sat April 7, 2018</label></li>
             </ul>
-            <p class="card-text">Total PTO days: <span class="total">1</span></p>
+          </div>
+          <div class="card-footer">
+            Total PTO days: <span class="total">1</span>
           </div>
         </div>
       </div>
-      <div class="col-sm-3">
+
+      <div class="col-sm-4" v-for="holidays, month in holidays.majorHolidays">
         <div class="card">
-          <div class="card-header">
-            Pesach
-          </div>
+          <h5 class="card-header">
+            {{ month }}
+          </h5>
           <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <ul class="days">
+              <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
+                <label>
+                  <input type="checkbox"/>
+                  {{ format(holiday.date) }} 
+                  (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
+                </label>
+              </li>
+            </ul>
           </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-header">
-            Pesach
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-header">
-            Pesach
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-header">
-            Pesach
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-header">
-            Pesach
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-footer">
+            Total PTO days: <span class="total">1</span>
           </div>
         </div>
       </div>
@@ -92,11 +60,20 @@
 </template>
 
 <script>
+
+import holidays from './holidays';
+import format from 'date-fns/format';
+
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      holidays
+    }
+  },
+  methods: {
+    format(date) {
+      return format(date, 'ddd MMM Do')
     }
   }
 }
@@ -111,6 +88,9 @@ export default {
   margin: 60px 30px 20px;
   .top {
     text-align: center;
+    h2 span.active {
+      text-decoration: underline dotted;
+    }
   }
 
   .card {
