@@ -11,11 +11,6 @@ import data from './2018.json';
 import _groupby from 'lodash.groupby';
 import _assign from 'lodash.assign';
 
-// debugger;
-
-
-var x = data;
-
 var hebdates =  data.items.filter(item => item.category == 'hebdate');
 var getHebdate = function(date) {
   return hebdates.find(el => el.date == date);
