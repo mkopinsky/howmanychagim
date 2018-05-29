@@ -29,7 +29,7 @@
             </ul>
           </div>
           <div class="card-footer">
-            Total PTO days: <span class="total">1</span>
+            Selected: <span class="total">1</span> weekday, <span class="total">1</span> weekend
           </div>
         </div>
       </div>
@@ -51,7 +51,10 @@
             </ul>
           </div>
           <div class="card-footer">
-            Total PTO days: <span class="total">1</span>
+            <span class="total">1</span> weekday, <span class="total">1</span> weekend selected
+          </div>
+          <div class="card-footer">
+            No days selected
           </div>
         </div>
       </div>
