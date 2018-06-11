@@ -2,11 +2,15 @@
   <div id="app">
     <div class="top">
       <h1>How many Chagim?</h1>
-      <h2>
+      <h3 class="year-selector">
         <span class="active">2018</span>
         <a href="#">2019</a>
         <a href="#">2020</a>
-      </h2>
+        <span>&ndash;</span>
+        <a href="#">5778</a>
+        <a href="#">5779</a>
+        <a href="#">5780</a>
+      </h3>
     </div>
     <div class="row">
       <div class="col-sm-4 d-none">
@@ -33,7 +37,7 @@
         </div>
       </div>
 
-      <div class="col-sm-4" v-for="holidays, month in holidays.majorHolidays">
+      <div class="col-md-3 col-sm-6" v-for="holidays, month in holidays.majorHolidays">
         <b-card
           :header="month"
           header-tag="h5"
@@ -41,7 +45,7 @@
           <ul class="days">
             <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
               <label>
-                <input type="checkbox"/>
+                <input type="checkbox" :checked="holiday.yomtov" />
                 {{ format(holiday.date) }} 
                 (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
               </label>
@@ -70,7 +74,7 @@ export default {
       return format(date, 'ddd MMM Do')
     },
     monthTotal(month) {
-      return `Total for ${month}: <span class="total">1</span> weekday, <span class="total">1</span> weekend`
+      return `Total: <span class="total">1</span> weekday, <span class="total">1</span> weekend`
     }
   }
 }
@@ -85,7 +89,7 @@ export default {
   margin: 60px 30px 20px;
   .top {
     text-align: center;
-    h2 span.active {
+    .year-selector span.active {
       text-decoration: underline dotted;
     }
   }
