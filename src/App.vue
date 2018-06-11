@@ -3,13 +3,13 @@
     <div class="top">
       <h1>How many Chagim?</h1>
       <h3 class="year-selector">
-        <span class="active">2018</span>
-        <a href="#">2019</a>
-        <a href="#">2020</a>
+        <a class="px-1 active">2018</a>
+        <a class="px-1" href="#">2019</a>
+        <a class="px-1" href="#">2020</a>
         <span>&ndash;</span>
-        <a href="#">5778</a>
-        <a href="#">5779</a>
-        <a href="#">5780</a>
+        <a class="px-1" href="#">5778</a>
+        <a class="px-1" href="#">5779</a>
+        <a class="px-1" href="#">5780</a>
       </h3>
       <div class="grand-totals mb-3">
         <h4>
@@ -69,7 +69,7 @@ export default {
   margin: 60px 30px 20px;
   .top {
     text-align: center;
-    .year-selector span.active {
+    .year-selector .active {
       text-decoration: underline dotted;
     }
   }
