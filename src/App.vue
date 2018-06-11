@@ -13,29 +13,6 @@
       </h3>
     </div>
     <div class="row">
-      <div class="col-sm-4 d-none">
-        <div class="card">
-          <h5 class="card-header">
-            Pesach
-          </h5>
-          <div class="card-body">
-            <h5 class="card-title">March 31st - April 7, 2018</h5>
-            <ul class="days">
-              <li class="yt"><label><input type="checkbox" id="pesach1" disabled checked /> Sat March 31, 2018</label></li>
-              <li class="yt"><label><input type="checkbox" id="pesach2" disabled checked /> Sun April 1, 2018</label></li>
-              <li><label><input type="checkbox" id="pes_chm1"/> Mon April 2, 2018</label></li>
-              <li><label><input type="checkbox" id="pes_chm2"/> Tue April 3, 2018</label></li>
-              <li><label><input type="checkbox" id="pes_chm3"/> Wed April 4, 2018</label></li>
-              <li><label><input type="checkbox" id="pes_chm4"/> Thur April 5, 2018</label></li>
-              <li class="yt"><label><input type="checkbox" id="pesach7" checked/> Fri April 6, 2018</label></li>
-              <li class="yt"><label><input type="checkbox" id="pesach8" disabled checked /> Sat April 7, 2018</label></li>
-            </ul>
-          </div>
-          <div class="card-footer">
-            Selected: <span class="total">1</span> weekday, <span class="total">1</span> weekend
-          </div>
-        </div>
-      </div>
 
       <div class="col-md-3 col-sm-6" v-for="holidays, month in holidays.majorHolidays">
         <b-card
