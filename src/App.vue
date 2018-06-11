@@ -11,14 +11,17 @@
         <a href="#">5779</a>
         <a href="#">5780</a>
       </h3>
+      <div class="grand-totals mb-3">
+        <h4>
+          Total: <span class="badge badge-warning">12</span> work days, <span class="badge badge-secondary">5</span> weekends
+        </h4>
+      </div>
     </div>
     <div class="row">
-
-      <div class="col-md-3 col-sm-6" v-for="holidays, month in holidays.majorHolidays">
+      <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.majorHolidays">
         <b-card
-          :header="month"
           header-tag="h5"
-          :footer="monthTotal(month)">
+          :header="monthTotal(month)">
           <ul class="days">
             <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
               <label>
@@ -51,7 +54,7 @@ export default {
       return format(date, 'ddd MMM Do')
     },
     monthTotal(month) {
-      return `Total: <span class="total">1</span> weekday, <span class="total">1</span> weekend`
+      return `${month} <span class="float-right"><span class="badge badge-warning">3</span> <span class="badge badge-secondary">1</span></span>`
     }
   }
 }
