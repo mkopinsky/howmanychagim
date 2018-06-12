@@ -11,10 +11,12 @@
         <a class="px-1" href="#">5779</a>
         <a class="px-1" href="#">5780</a>
       </h3>
-      <div class="grand-totals mb-3">
-        <h4>
-          Total: <span class="badge badge-warning">12</span> work days, <span class="badge badge-secondary">5</span> weekends
-        </h4>
+      <div class="container col-md-3 offset-md-9 fixed-top pt-3">
+        <nav class="navbar navbar-dark bg-primary grand-totals">
+          <h4 class="navbar-text">
+            Total: <span class="badge badge-warning">12</span> work days, <span class="badge badge-secondary">5</span> weekends
+          </h4>
+        </nav>
       </div>
     </div>
     <div class="row">
