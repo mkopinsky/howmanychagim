@@ -1,5 +1,5 @@
 
-// TODO: fetch data via API rather than stored on disk
+// TODO (maybe): fetch data via API rather than stored on disk
 // https://www.hebcal.com/home/195/jewish-calendar-rest-api
 // http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on
 import data from './2018.json';

@@ -1,0 +1,904 @@
+{
+  "title": "Hebcal 5780",
+  "_comment": "This was not pulled from Hebcal API directly. It was made by combining portions of two secular year API calls",
+  "items": [
+    {
+      "hebrew": "א׳ בתשרי תש״פ",
+      "category": "hebdate",
+      "date": "2019-09-30",
+      "title": "1st of Tishrei, 5780"
+    },
+    {
+      "category": "holiday",
+      "yomtov": true,
+      "hebrew": "ראש השנה 5780",
+      "title": "Rosh Hashana 5780",
+      "link": "http://www.hebcal.com/holidays/rosh-hashana",
+      "memo": "The Jewish New Year",
+      "date": "2019-09-30"
+    },
+    {
+      "date": "2019-10-01",
+      "title": "2nd of Tishrei, 5780",
+      "hebrew": "ב׳ בתשרי תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "title": "Rosh Hashana II",
+      "link": "http://www.hebcal.com/holidays/rosh-hashana",
+      "date": "2019-10-01",
+      "subcat": "major",
+      "hebrew": "ראש השנה יום ב׳",
+      "memo": "The Jewish New Year",
+      "category": "holiday",
+      "yomtov": true
+    },
+    {
+      "date": "2019-10-02",
+      "title": "3rd of Tishrei, 5780",
+      "hebrew": "ג׳ בתשרי תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "hebrew": "צום גדליה",
+      "category": "holiday",
+      "subcat": "fast",
+      "memo": "Fast of the Seventh Month, commemorates the assassination of the Jewish governor of Judah",
+      "date": "2019-10-02",
+      "link": "http://www.hebcal.com/holidays/tzom-gedaliah",
+      "title": "Tzom Gedaliah"
+    },
+    {
+      "hebrew": "ו׳ בתשרי תש״פ",
+      "category": "hebdate",
+      "date": "2019-10-05",
+      "title": "6th of Tishrei, 5780"
+    },
+    {
+      "hebrew": "ט׳ בתשרי תש״פ",
+      "category": "hebdate",
+      "date": "2019-10-08",
+      "title": "9th of Tishrei, 5780"
+    },
+    {
+      "date": "2019-10-08",
+      "memo": "Day of Atonement",
+      "title": "Erev Yom Kippur",
+      "link": "http://www.hebcal.com/holidays/yom-kippur",
+      "hebrew": "ערב יום כפור",
+      "category": "holiday"
+    },
+    {
+      "date": "2019-10-09",
+      "title": "10th of Tishrei, 5780",
+      "hebrew": "י׳ בתשרי תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "date": "2019-10-09",
+      "link": "http://www.hebcal.com/holidays/yom-kippur",
+      "title": "Yom Kippur",
+      "hebrew": "יום כפור",
+      "subcat": "major",
+      "memo": "Day of Atonement",
+      "yomtov": true,
+      "category": "holiday"
+    },
+    {
+      "hebrew": "י״ד בתשרי תש״פ",
+      "category": "hebdate",
+      "date": "2019-10-13",
+      "title": "14th of Tishrei, 5780"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "title": "Erev Sukkot",
+      "memo": "Feast of Tabernacles",
+      "date": "2019-10-13",
+      "category": "holiday",
+      "hebrew": "ערב סוכות"
+    },
+    {
+      "date": "2019-10-14",
+      "title": "15th of Tishrei, 5780",
+      "hebrew": "ט״ו בתשרי תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "yomtov": true,
+      "memo": "Feast of Tabernacles",
+      "subcat": "major",
+      "hebrew": "סוכות יום א׳",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "title": "Sukkot I",
+      "date": "2019-10-14"
+    },
+    {
+      "hebrew": "ט״ז בתשרי תש״פ",
+      "category": "hebdate",
+      "date": "2019-10-15",
+      "title": "16th of Tishrei, 5780"
+    },
+    {
+      "category": "holiday",
+      "yomtov": true,
+      "memo": "Feast of Tabernacles",
+      "subcat": "major",
+      "hebrew": "סוכות יום ב׳",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "title": "Sukkot II",
+      "date": "2019-10-15"
+    },
+    {
+      "date": "2019-10-16",
+      "title": "17th of Tishrei, 5780",
+      "hebrew": "י״ז בתשרי תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "date": "2019-10-16",
+      "memo": "Feast of Tabernacles",
+      "title": "Sukkot III (CH''M)",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "hebrew": "סוכות יום ג׳ (חול המועד)",
+      "subcat": "major",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״ח בתשרי תש״פ",
+      "title": "18th of Tishrei, 5780",
+      "date": "2019-10-17"
+    },
+    {
+      "subcat": "major",
+      "category": "holiday",
+      "hebrew": "סוכות יום ד׳ (חול המועד)",
+      "title": "Sukkot IV (CH''M)",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "date": "2019-10-17",
+      "memo": "Feast of Tabernacles"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״ט בתשרי תש״פ",
+      "title": "19th of Tishrei, 5780",
+      "date": "2019-10-18"
+    },
+    {
+      "hebrew": "סוכות יום ה׳ (חול המועד)",
+      "subcat": "major",
+      "category": "holiday",
+      "date": "2019-10-18",
+      "memo": "Feast of Tabernacles",
+      "title": "Sukkot V (CH''M)",
+      "link": "http://www.hebcal.com/holidays/sukkot"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ׳ בתשרי תש״פ",
+      "title": "20th of Tishrei, 5780",
+      "date": "2019-10-19"
+    },
+    {
+      "subcat": "major",
+      "category": "holiday",
+      "hebrew": "סוכות יום ו׳ (חול המועד)",
+      "title": "Sukkot VI (CH''M)",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "date": "2019-10-19",
+      "memo": "Feast of Tabernacles"
+    },
+    {
+      "title": "21st of Tishrei, 5780",
+      "date": "2019-10-20",
+      "category": "hebdate",
+      "hebrew": "כ״א בתשרי תש״פ"
+    },
+    {
+      "subcat": "major",
+      "category": "holiday",
+      "hebrew": "סוכות יום ז׳ (הושענא רבה)",
+      "title": "Sukkot VII (Hoshana Raba)",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "memo": "Feast of Tabernacles",
+      "date": "2019-10-20"
+    },
+    {
+      "hebrew": "כ״ב בתשרי תש״פ",
+      "category": "hebdate",
+      "date": "2019-10-21",
+      "title": "22nd of Tishrei, 5780"
+    },
+    {
+      "memo": "Eighth Day of Assembly",
+      "category": "holiday",
+      "yomtov": true,
+      "link": "http://www.hebcal.com/holidays/shmini-atzeret",
+      "title": "Shmini Atzeret",
+      "date": "2019-10-21",
+      "subcat": "major",
+      "hebrew": "שמיני עצרת"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ״ג בתשרי תש״פ",
+      "title": "23rd of Tishrei, 5780",
+      "date": "2019-10-22"
+    },
+    {
+      "subcat": "major",
+      "hebrew": "שמחת תורה",
+      "link": "http://www.hebcal.com/holidays/simchat-torah",
+      "title": "Simchat Torah",
+      "date": "2019-10-22",
+      "category": "holiday",
+      "yomtov": true,
+      "memo": "Day of Celebrating the Torah"
+    },
+    {
+      "hebrew": "ז׳ בחשון תש״פ",
+      "category": "hebdate",
+      "date": "2019-11-05",
+      "title": "7th of Cheshvan, 5780"
+    },
+    {
+      "category": "holiday",
+      "subcat": "modern",
+      "hebrew": "יום העלייה",
+      "link": "http://www.hebcal.com/holidays/yom-haaliyah",
+      "title": "Yom HaAliyah",
+      "date": "2019-11-05",
+      "memo": "Recognizes Aliyah, immigration to the Jewish State of Israel"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ״ט בחשון תש״פ",
+      "title": "29th of Cheshvan, 5780",
+      "date": "2019-11-27"
+    },
+    {
+      "hebrew": "סיגד",
+      "category": "holiday",
+      "subcat": "modern",
+      "memo": "Ethiopian Jewish holiday occurring 50 days after Yom Kippur",
+      "date": "2019-11-27",
+      "link": "http://www.hebcal.com/holidays/sigd",
+      "title": "Sigd"
+    },
+    {
+      "hebrew": "כ״ד בכסלו תש״פ",
+      "category": "hebdate",
+      "date": "2019-12-22",
+      "title": "24th of Kislev, 5780"
+    },
+    {
+      "category": "holiday",
+      "subcat": "major",
+      "hebrew": "חנוכה: א׳ נר",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "title": "Chanukah: 1 Candle",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "date": "2019-12-22"
+    },
+    {
+      "title": "25th of Kislev, 5780",
+      "date": "2019-12-23",
+      "category": "hebdate",
+      "hebrew": "כ״ה בכסלו תש״פ"
+    },
+    {
+      "date": "2019-12-23",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "title": "Chanukah: 2 Candles",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "hebrew": "חנוכה: ב׳ נרות",
+      "subcat": "major",
+      "category": "holiday"
+    },
+    {
+      "date": "2019-12-24",
+      "title": "26th of Kislev, 5780",
+      "hebrew": "כ״ו בכסלו תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "title": "Chanukah: 3 Candles",
+      "date": "2019-12-24",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "category": "holiday",
+      "subcat": "major",
+      "hebrew": "חנוכה: ג׳ נרות"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ״ז בכסלו תש״פ",
+      "title": "27th of Kislev, 5780",
+      "date": "2019-12-25"
+    },
+    {
+      "hebrew": "חנוכה: ד׳ נרות",
+      "subcat": "major",
+      "category": "holiday",
+      "date": "2019-12-25",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "title": "Chanukah: 4 Candles",
+      "link": "http://www.hebcal.com/holidays/chanukah"
+    },
+    {
+      "date": "2019-12-26",
+      "title": "28th of Kislev, 5780",
+      "hebrew": "כ״ח בכסלו תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "subcat": "major",
+      "category": "holiday",
+      "hebrew": "חנוכה: ה׳ נרות",
+      "title": "Chanukah: 5 Candles",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "date": "2019-12-26"
+    },
+    {
+      "hebrew": "כ״ט בכסלו תש״פ",
+      "category": "hebdate",
+      "date": "2019-12-27",
+      "title": "29th of Kislev, 5780"
+    },
+    {
+      "hebrew": "חנוכה: ו׳ נרות",
+      "category": "holiday",
+      "subcat": "major",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "date": "2019-12-27",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "title": "Chanukah: 6 Candles"
+    },
+    {
+      "hebrew": "ל׳ בכסלו תש״פ",
+      "category": "hebdate",
+      "date": "2019-12-28",
+      "title": "30th of Kislev, 5780"
+    },
+    {
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "date": "2019-12-28",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "title": "Chanukah: 7 Candles",
+      "hebrew": "חנוכה: ז׳ נרות",
+      "category": "holiday",
+      "subcat": "major"
+    },
+    {
+      "hebrew": "א׳ בטבת תש״פ",
+      "category": "hebdate",
+      "date": "2019-12-29",
+      "title": "1st of Tevet, 5780"
+    },
+    {
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "date": "2019-12-29",
+      "title": "Chanukah: 8 Candles",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "hebrew": "חנוכה: ח׳ נרות",
+      "subcat": "major",
+      "category": "holiday"
+    },
+    {
+      "date": "2019-12-30",
+      "title": "2nd of Tevet, 5780",
+      "hebrew": "ב׳ בטבת תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "hebrew": "חנוכה: יום ח׳",
+      "category": "holiday",
+      "subcat": "major",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "date": "2019-12-30",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "title": "Chanukah: 8th Day"
+    },
+    {
+      "title": "10th of Tevet, 5780",
+      "date": "2020-01-07",
+      "category": "hebdate",
+      "hebrew": "י׳ בטבת תש״פ"
+    },
+    {
+      "date": "2020-01-07",
+      "subcat": "fast",
+      "title": "Asara B'Tevet",
+      "memo": "Fast commemorating the siege of Jerusalem",
+      "link": "http://www.hebcal.com/holidays/asara-btevet",
+      "hebrew": "עשרה בטבת",
+      "category": "holiday"
+    },
+    {
+      "date": "2020-02-10",
+      "title": "15th of Sh'vat, 5780",
+      "category": "hebdate",
+      "hebrew": "ט״ו בשבט תש״פ"
+    },
+    {
+      "memo": "New Year for Trees",
+      "title": "Tu BiShvat",
+      "subcat": "minor",
+      "date": "2020-02-10",
+      "category": "holiday",
+      "hebrew": "טו בשבט",
+      "link": "http://www.hebcal.com/holidays/tu-bishvat"
+    },
+    {
+      "title": "27th of Sh'vat, 5780",
+      "date": "2020-02-22",
+      "hebrew": "כ״ז בשבט תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "hebrew": "י״א באדר תש״פ",
+      "category": "hebdate",
+      "date": "2020-03-07",
+      "title": "11th of Adar, 5780"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״ג באדר תש״פ",
+      "title": "13th of Adar, 5780",
+      "date": "2020-03-09"
+    },
+    {
+      "title": "Ta'anit Esther",
+      "date": "2020-03-09",
+      "subcat": "fast",
+      "memo": "Fast of Esther",
+      "hebrew": "תענית אסתר",
+      "link": "http://www.hebcal.com/holidays/taanit-esther",
+      "category": "holiday"
+    },
+    {
+      "memo": "Purim is one of the most joyous and fun holidays on the Jewish calendar",
+      "title": "Erev Purim",
+      "date": "2020-03-09",
+      "subcat": "major",
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/purim",
+      "hebrew": "ערב פורים"
+    },
+    {
+      "hebrew": "י״ד באדר תש״פ",
+      "category": "hebdate",
+      "title": "14th of Adar, 5780",
+      "date": "2020-03-10"
+    },
+    {
+      "subcat": "major",
+      "date": "2020-03-10",
+      "title": "Purim",
+      "memo": "Purim is one of the most joyous and fun holidays on the Jewish calendar",
+      "hebrew": "פורים",
+      "link": "http://www.hebcal.com/holidays/purim",
+      "category": "holiday"
+    },
+    {
+      "title": "15th of Adar, 5780",
+      "date": "2020-03-11",
+      "category": "hebdate",
+      "hebrew": "ט״ו באדר תש״פ"
+    },
+    {
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/shushan-purim",
+      "hebrew": "שושן פורים",
+      "memo": "Purim celebrated in Jerusalem and walled cities",
+      "subcat": "minor",
+      "date": "2020-03-11",
+      "title": "Shushan Purim"
+    },
+    {
+      "date": "2020-03-14",
+      "title": "18th of Adar, 5780",
+      "hebrew": "י״ח באדר תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "title": "25th of Adar, 5780",
+      "date": "2020-03-21",
+      "category": "hebdate",
+      "hebrew": "כ״ה באדר תש״פ"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י׳ בניסן תש״פ",
+      "date": "2020-04-04",
+      "title": "10th of Nisan, 5780"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״ד בניסן תש״פ",
+      "date": "2020-04-08",
+      "title": "14th of Nisan, 5780"
+    },
+    {
+      "memo": "Fast of the First Born",
+      "subcat": "fast",
+      "date": "2020-04-08",
+      "title": "Ta'anit Bechorot",
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/taanit-bechorot",
+      "hebrew": "תענית בכורות"
+    },
+    {
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "hebrew": "ערב פסח",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "date": "2020-04-08",
+      "title": "Erev Pesach"
+    },
+    {
+      "title": "15th of Nisan, 5780",
+      "date": "2020-04-09",
+      "hebrew": "ט״ו בניסן תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "yomtov": true,
+      "date": "2020-04-09",
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "hebrew": "פסח יום א׳",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "title": "Pesach I",
+      "subcat": "major"
+    },
+    {
+      "date": "2020-04-10",
+      "title": "16th of Nisan, 5780",
+      "hebrew": "ט״ז בניסן תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "hebrew": "פסח יום ב׳",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "category": "holiday",
+      "subcat": "major",
+      "title": "Pesach II",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "date": "2020-04-10",
+      "yomtov": true
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״ז בניסן תש״פ",
+      "title": "17th of Nisan, 5780",
+      "date": "2020-04-11"
+    },
+    {
+      "title": "Pesach III (CH''M)",
+      "date": "2020-04-11",
+      "subcat": "major",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "hebrew": "פסח יום ג׳ (חול המועד)",
+      "category": "holiday"
+    },
+    {
+      "hebrew": "י״ח בניסן תש״פ",
+      "category": "hebdate",
+      "title": "18th of Nisan, 5780",
+      "date": "2020-04-12"
+    },
+    {
+      "title": "Pesach IV (CH''M)",
+      "date": "2020-04-12",
+      "subcat": "major",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "hebrew": "פסח יום ד׳ (חול המועד)",
+      "category": "holiday"
+    },
+    {
+      "title": "19th of Nisan, 5780",
+      "date": "2020-04-13",
+      "hebrew": "י״ט בניסן תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "hebrew": "פסח יום ה׳ (חול המועד)",
+      "category": "holiday",
+      "title": "Pesach V (CH''M)",
+      "subcat": "major",
+      "date": "2020-04-13",
+      "memo": "Passover, the Feast of Unleavened Bread"
+    },
+    {
+      "date": "2020-04-14",
+      "title": "20th of Nisan, 5780",
+      "category": "hebdate",
+      "hebrew": "כ׳ בניסן תש״פ"
+    },
+    {
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "date": "2020-04-14",
+      "subcat": "major",
+      "title": "Pesach VI (CH''M)",
+      "category": "holiday",
+      "hebrew": "פסח יום ו׳ (חול המועד)",
+      "link": "http://www.hebcal.com/holidays/pesach"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ״א בניסן תש״פ",
+      "date": "2020-04-15",
+      "title": "21st of Nisan, 5780"
+    },
+    {
+      "date": "2020-04-15",
+      "yomtov": true,
+      "hebrew": "פסח יום ז׳",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "category": "holiday",
+      "subcat": "major",
+      "title": "Pesach VII",
+      "memo": "Passover, the Feast of Unleavened Bread"
+    },
+    {
+      "hebrew": "כ״ב בניסן תש״פ",
+      "category": "hebdate",
+      "title": "22nd of Nisan, 5780",
+      "date": "2020-04-16"
+    },
+    {
+      "subcat": "major",
+      "title": "Pesach VIII",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "hebrew": "פסח יום ח׳",
+      "category": "holiday",
+      "date": "2020-04-16",
+      "yomtov": true
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ״ז בניסן תש״פ",
+      "title": "27th of Nisan, 5780",
+      "date": "2020-04-21"
+    },
+    {
+      "memo": "Holocaust Memorial Day",
+      "title": "Yom HaShoah",
+      "date": "2020-04-21",
+      "subcat": "modern",
+      "category": "holiday",
+      "hebrew": "יום השואה",
+      "link": "http://www.hebcal.com/holidays/yom-hashoah"
+    },
+    {
+      "hebrew": "ד׳ באייר תש״פ",
+      "category": "hebdate",
+      "title": "4th of Iyyar, 5780",
+      "date": "2020-04-28"
+    },
+    {
+      "memo": "Israeli Memorial Day",
+      "title": "Yom HaZikaron",
+      "date": "2020-04-28",
+      "subcat": "modern",
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/yom-hazikaron",
+      "hebrew": "יום הזכרון"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ה׳ באייר תש״פ",
+      "title": "5th of Iyyar, 5780",
+      "date": "2020-04-29"
+    },
+    {
+      "memo": "Israeli Independence Day",
+      "title": "Yom HaAtzma'ut",
+      "subcat": "modern",
+      "date": "2020-04-29",
+      "category": "holiday",
+      "hebrew": "יום העצמאות",
+      "link": "http://www.hebcal.com/holidays/yom-haatzmaut"
+    },
+    {
+      "date": "2020-05-08",
+      "title": "14th of Iyyar, 5780",
+      "category": "hebdate",
+      "hebrew": "י״ד באייר תש״פ"
+    },
+    {
+      "date": "2020-05-08",
+      "subcat": "minor",
+      "title": "Pesach Sheni",
+      "memo": "Second Passover, one month after Passover",
+      "link": "http://www.hebcal.com/holidays/pesach-sheni",
+      "hebrew": "פסח שני",
+      "category": "holiday"
+    },
+    {
+      "date": "2020-05-12",
+      "title": "18th of Iyyar, 5780",
+      "hebrew": "י״ח באייר תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "hebrew": "ל״ג בעומר",
+      "link": "http://www.hebcal.com/holidays/lag-baomer",
+      "category": "holiday",
+      "subcat": "minor",
+      "date": "2020-05-12",
+      "title": "Lag BaOmer",
+      "memo": "33rd day of counting the Omer"
+    },
+    {
+      "hebrew": "כ״ח באייר תש״פ",
+      "category": "hebdate",
+      "date": "2020-05-22",
+      "title": "28th of Iyyar, 5780"
+    },
+    {
+      "subcat": "modern",
+      "date": "2020-05-22",
+      "title": "Yom Yerushalayim",
+      "memo": "Jerusalem Day",
+      "hebrew": "יום ירושלים",
+      "link": "http://www.hebcal.com/holidays/yom-yerushalayim",
+      "category": "holiday"
+    },
+    {
+      "hebrew": "ה׳ בסיון תש״פ",
+      "category": "hebdate",
+      "title": "5th of Sivan, 5780",
+      "date": "2020-05-28"
+    },
+    {
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/shavuot",
+      "hebrew": "ערב שבועות",
+      "memo": "Festival of Weeks, commemorates the giving of the Torah at Mount Sinai",
+      "date": "2020-05-28",
+      "title": "Erev Shavuot"
+    },
+    {
+      "hebrew": "ו׳ בסיון תש״פ",
+      "category": "hebdate",
+      "title": "6th of Sivan, 5780",
+      "date": "2020-05-29"
+    },
+    {
+      "hebrew": "שבועות יום א׳",
+      "link": "http://www.hebcal.com/holidays/shavuot",
+      "category": "holiday",
+      "title": "Shavuot I",
+      "subcat": "major",
+      "memo": "Festival of Weeks, commemorates the giving of the Torah at Mount Sinai",
+      "date": "2020-05-29",
+      "yomtov": true
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ז׳ בסיון תש״פ",
+      "title": "7th of Sivan, 5780",
+      "date": "2020-05-30"
+    },
+    {
+      "title": "Shavuot II",
+      "subcat": "major",
+      "memo": "Festival of Weeks, commemorates the giving of the Torah at Mount Sinai",
+      "link": "http://www.hebcal.com/holidays/shavuot",
+      "hebrew": "שבועות יום ב׳",
+      "category": "holiday",
+      "date": "2020-05-30",
+      "yomtov": true
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״ז בתמוז תש״פ",
+      "title": "17th of Tamuz, 5780",
+      "date": "2020-07-09"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/tzom-tammuz",
+      "hebrew": "צום תמוז",
+      "category": "holiday",
+      "subcat": "fast",
+      "date": "2020-07-09",
+      "title": "Tzom Tammuz",
+      "memo": "Fast commemorating breaching of the walls of Jerusalem before the destruction of the Second Temple"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ד׳ באב תש״פ",
+      "title": "4th of Av, 5780",
+      "date": "2020-07-25"
+    },
+    {
+      "date": "2020-07-29",
+      "title": "8th of Av, 5780",
+      "category": "hebdate",
+      "hebrew": "ח׳ באב תש״פ"
+    },
+    {
+      "category": "holiday",
+      "hebrew": "ערב תשעה באב",
+      "link": "http://www.hebcal.com/holidays/tisha-bav",
+      "memo": "The Ninth of Av, fast commemorating the destruction of the two Temples",
+      "subcat": "major",
+      "date": "2020-07-29",
+      "title": "Erev Tish'a B'Av"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ט׳ באב תש״פ",
+      "title": "9th of Av, 5780",
+      "date": "2020-07-30"
+    },
+    {
+      "date": "2020-07-30",
+      "subcat": "major",
+      "title": "Tish'a B'Av",
+      "memo": "The Ninth of Av, fast commemorating the destruction of the two Temples",
+      "hebrew": "תשעה באב",
+      "link": "http://www.hebcal.com/holidays/tisha-bav",
+      "category": "holiday"
+    },
+    {
+      "hebrew": "י״א באב תש״פ",
+      "category": "hebdate",
+      "date": "2020-08-01",
+      "title": "11th of Av, 5780"
+    },
+    {
+      "hebrew": "ט״ו באב תש״פ",
+      "category": "hebdate",
+      "date": "2020-08-05",
+      "title": "15th of Av, 5780"
+    },
+    {
+      "memo": "Jewish holiday of love, similar to Valentine's Day",
+      "date": "2020-08-05",
+      "subcat": "minor",
+      "title": "Tu B'Av",
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/tu-bav",
+      "hebrew": "טו באב"
+    },
+    {
+      "title": "23rd of Elul, 5780",
+      "date": "2020-09-12",
+      "hebrew": "כ״ג באלול תש״פ",
+      "category": "hebdate"
+    },
+    {
+      "title": "Leil Selichot",
+      "date": "2020-09-12",
+      "subcat": "minor",
+      "memo": "Prayers for forgiveness in preparation for the High Holidays",
+      "hebrew": "סליחות",
+      "link": "http://www.hebcal.com/holidays/leil-selichot",
+      "category": "holiday"
+    },
+    {
+      "title": "29th of Elul, 5780",
+      "date": "2020-09-18",
+      "category": "hebdate",
+      "hebrew": "כ״ט באלול תש״פ"
+    },
+    {
+      "category": "holiday",
+      "hebrew": "ערב ראש השנה",
+      "link": "http://www.hebcal.com/holidays/rosh-hashana",
+      "memo": "The Jewish New Year",
+      "title": "Erev Rosh Hashana",
+      "date": "2020-09-18"
+    }
+  ]
+}
