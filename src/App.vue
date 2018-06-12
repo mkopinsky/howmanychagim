@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.majorHolidays">
+      <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.holidaysByMonth">
         <b-card
           header-tag="h5"
           :header="monthTotal(month)">

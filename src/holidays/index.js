@@ -4,38 +4,33 @@
 // http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on
 import data from './2018.json';
 
-// import hebcal from 'hebcal';
-// var h = new hebcal.GregYear(2018);
-// var holidays = h.holidays;
-
-import _groupby from 'lodash.groupby';
-import _assign from 'lodash.assign';
-
-var hebdates =  data.items.filter(item => item.category == 'hebdate');
-var getHebdate = function(date) {
-  return hebdates.find(el => el.date == date);
-}
-var getHebMonth = function(date) {
-  return getHebdate(date)
-    .title
-    .match(/of ([^ ,]*)/)[1];
-}
-
-var majorHolidays = data.items
-  .filter(item => item.category == 'holiday' && item.subcat == 'major')
-  .map(function(item) {
-    return _assign(
+let hebdates = data
+  .items
+  .filter(item => item.category == 'hebdate');
+let holidays = data
+  .items
+  .filter(item => item.category == 'holiday')
+  .map(item => {
+    let date = hebdates.find(el => el.date == item.date);
+    return Object.assign(
       item,
       {
-        month: getHebMonth(item.date)
+        hebrew_date: date.hebrew,
+        hebrew_date_title: date.title,
+        month: new Date(item.date).getMonth()
       }
-    )
+    );
   });
 
-majorHolidays = _groupby(majorHolidays, 'month');
+let holidaysByMonth = {};
+let months = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+months.forEach(function(month, index) {
+  holidaysByMonth[month] = holidays.filter(holiday => holiday.month == index);
+});
 
 export default {
-  raw: data,
-  hebdates,
-  majorHolidays,
+  holidaysByMonth
 }
