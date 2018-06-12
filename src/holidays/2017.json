@@ -1,0 +1,938 @@
+{
+  "title": "Hebcal 2017",
+  "items": [
+    {
+      "date": "2017-01-01",
+      "hebrew": "ג׳ בטבת תשע״ז",
+      "title": "3rd of Tevet, 5777",
+      "category": "hebdate"
+    },
+    {
+      "title": "Chanukah: 8th Day",
+      "subcat": "major",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "date": "2017-01-01",
+      "hebrew": "חנוכה: יום ח׳",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "title": "10th of Tevet, 5777",
+      "hebrew": "י׳ בטבת תשע״ז",
+      "date": "2017-01-08"
+    },
+    {
+      "title": "Asara B'Tevet",
+      "subcat": "fast",
+      "hebrew": "עשרה בטבת",
+      "date": "2017-01-08",
+      "link": "http://www.hebcal.com/holidays/asara-btevet",
+      "memo": "Fast commemorating the siege of Jerusalem",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "title": "15th of Sh'vat, 5777",
+      "hebrew": "ט״ו בשבט תשע״ז",
+      "date": "2017-02-11"
+    },
+    {
+      "category": "holiday",
+      "subcat": "minor",
+      "title": "Tu BiShvat",
+      "hebrew": "טו בשבט",
+      "link": "http://www.hebcal.com/holidays/tu-bishvat",
+      "date": "2017-02-11",
+      "memo": "New Year for Trees"
+    },
+    {
+      "category": "hebdate",
+      "title": "29th of Sh'vat, 5777",
+      "date": "2017-02-25",
+      "hebrew": "כ״ט בשבט תשע״ז"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״א באדר תשע״ז",
+      "date": "2017-03-09",
+      "title": "11th of Adar, 5777"
+    },
+    {
+      "category": "holiday",
+      "date": "2017-03-09",
+      "hebrew": "תענית אסתר",
+      "link": "http://www.hebcal.com/holidays/taanit-esther",
+      "memo": "Fast of Esther",
+      "title": "Ta'anit Esther",
+      "subcat": "fast"
+    },
+    {
+      "category": "hebdate",
+      "title": "13th of Adar, 5777",
+      "date": "2017-03-11",
+      "hebrew": "י״ג באדר תשע״ז"
+    },
+    {
+      "category": "holiday",
+      "title": "Erev Purim",
+      "subcat": "major",
+      "memo": "Purim is one of the most joyous and fun holidays on the Jewish calendar",
+      "hebrew": "ערב פורים",
+      "date": "2017-03-11",
+      "link": "http://www.hebcal.com/holidays/purim"
+    },
+    {
+      "date": "2017-03-12",
+      "hebrew": "י״ד באדר תשע״ז",
+      "title": "14th of Adar, 5777",
+      "category": "hebdate"
+    },
+    {
+      "memo": "Purim is one of the most joyous and fun holidays on the Jewish calendar",
+      "link": "http://www.hebcal.com/holidays/purim",
+      "hebrew": "פורים",
+      "date": "2017-03-12",
+      "subcat": "major",
+      "title": "Purim",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "title": "15th of Adar, 5777",
+      "hebrew": "ט״ו באדר תשע״ז",
+      "date": "2017-03-13"
+    },
+    {
+      "category": "holiday",
+      "subcat": "minor",
+      "title": "Shushan Purim",
+      "memo": "Purim celebrated in Jerusalem and walled cities",
+      "hebrew": "שושן פורים",
+      "date": "2017-03-13",
+      "link": "http://www.hebcal.com/holidays/shushan-purim"
+    },
+    {
+      "category": "hebdate",
+      "date": "2017-03-18",
+      "hebrew": "כ׳ באדר תשע״ז",
+      "title": "20th of Adar, 5777"
+    },
+    {
+      "date": "2017-03-25",
+      "hebrew": "כ״ז באדר תשע״ז",
+      "title": "27th of Adar, 5777",
+      "category": "hebdate"
+    },
+    {
+      "category": "hebdate",
+      "title": "12th of Nisan, 5777",
+      "date": "2017-04-08",
+      "hebrew": "י״ב בניסן תשע״ז"
+    },
+    {
+      "category": "hebdate",
+      "title": "14th of Nisan, 5777",
+      "hebrew": "י״ד בניסן תשע״ז",
+      "date": "2017-04-10"
+    },
+    {
+      "subcat": "fast",
+      "title": "Ta'anit Bechorot",
+      "memo": "Fast of the First Born",
+      "hebrew": "תענית בכורות",
+      "date": "2017-04-10",
+      "link": "http://www.hebcal.com/holidays/taanit-bechorot",
+      "category": "holiday"
+    },
+    {
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "hebrew": "ערב פסח",
+      "date": "2017-04-10",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "title": "Erev Pesach",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ט״ו בניסן תשע״ז",
+      "date": "2017-04-11",
+      "title": "15th of Nisan, 5777"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "date": "2017-04-11",
+      "title": "Pesach I",
+      "hebrew": "פסח יום א׳",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "yomtov": true,
+      "subcat": "major",
+      "category": "holiday"
+    },
+    {
+      "date": "2017-04-12",
+      "hebrew": "ט״ז בניסן תשע״ז",
+      "title": "16th of Nisan, 5777",
+      "category": "hebdate"
+    },
+    {
+      "date": "2017-04-12",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "title": "Pesach II",
+      "category": "holiday",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "hebrew": "פסח יום ב׳",
+      "subcat": "major",
+      "yomtov": true
+    },
+    {
+      "hebrew": "י״ז בניסן תשע״ז",
+      "date": "2017-04-13",
+      "title": "17th of Nisan, 5777",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "hebrew": "פסח יום ג׳ (חול המועד)",
+      "date": "2017-04-13",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "subcat": "major",
+      "title": "Pesach III (CH''M)"
+    },
+    {
+      "title": "18th of Nisan, 5777",
+      "hebrew": "י״ח בניסן תשע״ז",
+      "date": "2017-04-14",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "hebrew": "פסח יום ד׳ (חול המועד)",
+      "date": "2017-04-14",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "subcat": "major",
+      "title": "Pesach IV (CH''M)"
+    },
+    {
+      "category": "hebdate",
+      "title": "19th of Nisan, 5777",
+      "date": "2017-04-15",
+      "hebrew": "י״ט בניסן תשע״ז"
+    },
+    {
+      "title": "Pesach V (CH''M)",
+      "subcat": "major",
+      "hebrew": "פסח יום ה׳ (חול המועד)",
+      "date": "2017-04-15",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "date": "2017-04-16",
+      "hebrew": "כ׳ בניסן תשע״ז",
+      "title": "20th of Nisan, 5777"
+    },
+    {
+      "category": "holiday",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "date": "2017-04-16",
+      "hebrew": "פסח יום ו׳ (חול המועד)",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "title": "Pesach VI (CH''M)",
+      "subcat": "major"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ״א בניסן תשע״ז",
+      "date": "2017-04-17",
+      "title": "21st of Nisan, 5777"
+    },
+    {
+      "date": "2017-04-17",
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "title": "Pesach VII",
+      "hebrew": "פסח יום ז׳",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "yomtov": true,
+      "subcat": "major",
+      "category": "holiday"
+    },
+    {
+      "title": "22nd of Nisan, 5777",
+      "hebrew": "כ״ב בניסן תשע״ז",
+      "date": "2017-04-18",
+      "category": "hebdate"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/pesach",
+      "date": "2017-04-18",
+      "title": "Pesach VIII",
+      "hebrew": "פסח יום ח׳",
+      "memo": "Passover, the Feast of Unleavened Bread",
+      "yomtov": true,
+      "subcat": "major",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ״ח בניסן תשע״ז",
+      "date": "2017-04-24",
+      "title": "28th of Nisan, 5777"
+    },
+    {
+      "memo": "Holocaust Memorial Day",
+      "date": "2017-04-24",
+      "hebrew": "יום השואה",
+      "link": "http://www.hebcal.com/holidays/yom-hashoah",
+      "subcat": "modern",
+      "title": "Yom HaShoah",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "title": "5th of Iyyar, 5777",
+      "hebrew": "ה׳ באייר תשע״ז",
+      "date": "2017-05-01"
+    },
+    {
+      "category": "holiday",
+      "memo": "Israeli Memorial Day",
+      "link": "http://www.hebcal.com/holidays/yom-hazikaron",
+      "hebrew": "יום הזכרון",
+      "date": "2017-05-01",
+      "subcat": "modern",
+      "title": "Yom HaZikaron"
+    },
+    {
+      "title": "6th of Iyyar, 5777",
+      "date": "2017-05-02",
+      "hebrew": "ו׳ באייר תשע״ז",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "date": "2017-05-02",
+      "hebrew": "יום העצמאות",
+      "link": "http://www.hebcal.com/holidays/yom-haatzmaut",
+      "memo": "Israeli Independence Day",
+      "subcat": "modern",
+      "title": "Yom HaAtzma'ut"
+    },
+    {
+      "category": "hebdate",
+      "date": "2017-05-10",
+      "hebrew": "י״ד באייר תשע״ז",
+      "title": "14th of Iyyar, 5777"
+    },
+    {
+      "title": "Pesach Sheni",
+      "subcat": "minor",
+      "link": "http://www.hebcal.com/holidays/pesach-sheni",
+      "hebrew": "פסח שני",
+      "date": "2017-05-10",
+      "memo": "Second Passover, one month after Passover",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״ח באייר תשע״ז",
+      "date": "2017-05-14",
+      "title": "18th of Iyyar, 5777"
+    },
+    {
+      "memo": "33rd day of counting the Omer",
+      "hebrew": "ל״ג בעומר",
+      "link": "http://www.hebcal.com/holidays/lag-baomer",
+      "date": "2017-05-14",
+      "title": "Lag BaOmer",
+      "subcat": "minor",
+      "category": "holiday"
+    },
+    {
+      "title": "28th of Iyyar, 5777",
+      "hebrew": "כ״ח באייר תשע״ז",
+      "date": "2017-05-24",
+      "category": "hebdate"
+    },
+    {
+      "memo": "Jerusalem Day",
+      "hebrew": "יום ירושלים",
+      "link": "http://www.hebcal.com/holidays/yom-yerushalayim",
+      "date": "2017-05-24",
+      "subcat": "modern",
+      "title": "Yom Yerushalayim",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "title": "5th of Sivan, 5777",
+      "date": "2017-05-30",
+      "hebrew": "ה׳ בסיון תשע״ז"
+    },
+    {
+      "title": "Erev Shavuot",
+      "memo": "Festival of Weeks, commemorates the giving of the Torah at Mount Sinai",
+      "link": "http://www.hebcal.com/holidays/shavuot",
+      "hebrew": "ערב שבועות",
+      "date": "2017-05-30",
+      "category": "holiday"
+    },
+    {
+      "title": "6th of Sivan, 5777",
+      "hebrew": "ו׳ בסיון תשע״ז",
+      "date": "2017-05-31",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "yomtov": true,
+      "subcat": "major",
+      "memo": "Festival of Weeks, commemorates the giving of the Torah at Mount Sinai",
+      "hebrew": "שבועות יום א׳",
+      "title": "Shavuot I",
+      "link": "http://www.hebcal.com/holidays/shavuot",
+      "date": "2017-05-31"
+    },
+    {
+      "category": "hebdate",
+      "date": "2017-06-01",
+      "hebrew": "ז׳ בסיון תשע״ז",
+      "title": "7th of Sivan, 5777"
+    },
+    {
+      "title": "Shavuot II",
+      "date": "2017-06-01",
+      "link": "http://www.hebcal.com/holidays/shavuot",
+      "category": "holiday",
+      "subcat": "major",
+      "yomtov": true,
+      "memo": "Festival of Weeks, commemorates the giving of the Torah at Mount Sinai",
+      "hebrew": "שבועות יום ב׳"
+    },
+    {
+      "title": "17th of Tamuz, 5777",
+      "hebrew": "י״ז בתמוז תשע״ז",
+      "date": "2017-07-11",
+      "category": "hebdate"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/tzom-tammuz",
+      "hebrew": "צום תמוז",
+      "date": "2017-07-11",
+      "memo": "Fast commemorating breaching of the walls of Jerusalem before the destruction of the Second Temple",
+      "title": "Tzom Tammuz",
+      "subcat": "fast",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "date": "2017-07-29",
+      "hebrew": "ו׳ באב תשע״ז",
+      "title": "6th of Av, 5777"
+    },
+    {
+      "title": "8th of Av, 5777",
+      "hebrew": "ח׳ באב תשע״ז",
+      "date": "2017-07-31",
+      "category": "hebdate"
+    },
+    {
+      "subcat": "major",
+      "title": "Erev Tish'a B'Av",
+      "memo": "The Ninth of Av, fast commemorating the destruction of the two Temples",
+      "link": "http://www.hebcal.com/holidays/tisha-bav",
+      "hebrew": "ערב תשעה באב",
+      "date": "2017-07-31",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ט׳ באב תשע״ז",
+      "date": "2017-08-01",
+      "title": "9th of Av, 5777"
+    },
+    {
+      "category": "holiday",
+      "memo": "The Ninth of Av, fast commemorating the destruction of the two Temples",
+      "link": "http://www.hebcal.com/holidays/tisha-bav",
+      "hebrew": "תשעה באב",
+      "date": "2017-08-01",
+      "subcat": "major",
+      "title": "Tish'a B'Av"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "י״ג באב תשע״ז",
+      "date": "2017-08-05",
+      "title": "13th of Av, 5777"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ט״ו באב תשע״ז",
+      "date": "2017-08-07",
+      "title": "15th of Av, 5777"
+    },
+    {
+      "category": "holiday",
+      "memo": "Jewish holiday of love, similar to Valentine's Day",
+      "hebrew": "טו באב",
+      "link": "http://www.hebcal.com/holidays/tu-bav",
+      "date": "2017-08-07",
+      "subcat": "minor",
+      "title": "Tu B'Av"
+    },
+    {
+      "category": "hebdate",
+      "date": "2017-09-16",
+      "hebrew": "כ״ה באלול תשע״ז",
+      "title": "25th of Elul, 5777"
+    },
+    {
+      "category": "holiday",
+      "memo": "Prayers for forgiveness in preparation for the High Holidays",
+      "link": "http://www.hebcal.com/holidays/leil-selichot",
+      "hebrew": "סליחות",
+      "date": "2017-09-16",
+      "subcat": "minor",
+      "title": "Leil Selichot"
+    },
+    {
+      "date": "2017-09-20",
+      "hebrew": "כ״ט באלול תשע״ז",
+      "title": "29th of Elul, 5777",
+      "category": "hebdate"
+    },
+    {
+      "title": "Erev Rosh Hashana",
+      "memo": "The Jewish New Year",
+      "hebrew": "ערב ראש השנה",
+      "link": "http://www.hebcal.com/holidays/rosh-hashana",
+      "date": "2017-09-20",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "title": "1st of Tishrei, 5778",
+      "date": "2017-09-21",
+      "hebrew": "א׳ בתשרי תשע״ח"
+    },
+    {
+      "memo": "The Jewish New Year",
+      "hebrew": "ראש השנה 5778",
+      "link": "http://www.hebcal.com/holidays/rosh-hashana",
+      "date": "2017-09-21",
+      "title": "Rosh Hashana 5778",
+      "yomtov": true,
+      "category": "holiday"
+    },
+    {
+      "hebrew": "ב׳ בתשרי תשע״ח",
+      "date": "2017-09-22",
+      "title": "2nd of Tishrei, 5778",
+      "category": "hebdate"
+    },
+    {
+      "subcat": "major",
+      "yomtov": true,
+      "hebrew": "ראש השנה יום ב׳",
+      "memo": "The Jewish New Year",
+      "category": "holiday",
+      "title": "Rosh Hashana II",
+      "link": "http://www.hebcal.com/holidays/rosh-hashana",
+      "date": "2017-09-22"
+    },
+    {
+      "title": "3rd of Tishrei, 5778",
+      "date": "2017-09-23",
+      "hebrew": "ג׳ בתשרי תשע״ח",
+      "category": "hebdate"
+    },
+    {
+      "date": "2017-09-24",
+      "hebrew": "ד׳ בתשרי תשע״ח",
+      "title": "4th of Tishrei, 5778",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "memo": "Fast of the Seventh Month, commemorates the assassination of the Jewish governor of Judah",
+      "hebrew": "צום גדליה",
+      "date": "2017-09-24",
+      "link": "http://www.hebcal.com/holidays/tzom-gedaliah",
+      "subcat": "fast",
+      "title": "Tzom Gedaliah"
+    },
+    {
+      "title": "9th of Tishrei, 5778",
+      "date": "2017-09-29",
+      "hebrew": "ט׳ בתשרי תשע״ח",
+      "category": "hebdate"
+    },
+    {
+      "title": "Erev Yom Kippur",
+      "memo": "Day of Atonement",
+      "date": "2017-09-29",
+      "hebrew": "ערב יום כפור",
+      "link": "http://www.hebcal.com/holidays/yom-kippur",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "title": "10th of Tishrei, 5778",
+      "hebrew": "י׳ בתשרי תשע״ח",
+      "date": "2017-09-30"
+    },
+    {
+      "memo": "Day of Atonement",
+      "hebrew": "יום כפור",
+      "yomtov": true,
+      "subcat": "major",
+      "category": "holiday",
+      "link": "http://www.hebcal.com/holidays/yom-kippur",
+      "date": "2017-09-30",
+      "title": "Yom Kippur"
+    },
+    {
+      "category": "hebdate",
+      "title": "14th of Tishrei, 5778",
+      "date": "2017-10-04",
+      "hebrew": "י״ד בתשרי תשע״ח"
+    },
+    {
+      "title": "Erev Sukkot",
+      "memo": "Feast of Tabernacles",
+      "date": "2017-10-04",
+      "hebrew": "ערב סוכות",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ט״ו בתשרי תשע״ח",
+      "date": "2017-10-05",
+      "title": "15th of Tishrei, 5778"
+    },
+    {
+      "date": "2017-10-05",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "title": "Sukkot I",
+      "hebrew": "סוכות יום א׳",
+      "memo": "Feast of Tabernacles",
+      "yomtov": true,
+      "subcat": "major",
+      "category": "holiday"
+    },
+    {
+      "title": "16th of Tishrei, 5778",
+      "hebrew": "ט״ז בתשרי תשע״ח",
+      "date": "2017-10-06",
+      "category": "hebdate"
+    },
+    {
+      "yomtov": true,
+      "subcat": "major",
+      "memo": "Feast of Tabernacles",
+      "hebrew": "סוכות יום ב׳",
+      "category": "holiday",
+      "title": "Sukkot II",
+      "date": "2017-10-06",
+      "link": "http://www.hebcal.com/holidays/sukkot"
+    },
+    {
+      "category": "hebdate",
+      "date": "2017-10-07",
+      "hebrew": "י״ז בתשרי תשע״ח",
+      "title": "17th of Tishrei, 5778"
+    },
+    {
+      "hebrew": "סוכות יום ג׳ (חול המועד)",
+      "date": "2017-10-07",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "memo": "Feast of Tabernacles",
+      "subcat": "major",
+      "title": "Sukkot III (CH''M)",
+      "category": "holiday"
+    },
+    {
+      "hebrew": "י״ח בתשרי תשע״ח",
+      "date": "2017-10-08",
+      "title": "18th of Tishrei, 5778",
+      "category": "hebdate"
+    },
+    {
+      "title": "Sukkot IV (CH''M)",
+      "subcat": "major",
+      "hebrew": "סוכות יום ד׳ (חול המועד)",
+      "date": "2017-10-08",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "memo": "Feast of Tabernacles",
+      "category": "holiday"
+    },
+    {
+      "date": "2017-10-09",
+      "hebrew": "י״ט בתשרי תשע״ח",
+      "title": "19th of Tishrei, 5778",
+      "category": "hebdate"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "hebrew": "סוכות יום ה׳ (חול המועד)",
+      "date": "2017-10-09",
+      "memo": "Feast of Tabernacles",
+      "subcat": "major",
+      "title": "Sukkot V (CH''M)",
+      "category": "holiday"
+    },
+    {
+      "date": "2017-10-10",
+      "hebrew": "כ׳ בתשרי תשע״ח",
+      "title": "20th of Tishrei, 5778",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "memo": "Feast of Tabernacles",
+      "hebrew": "סוכות יום ו׳ (חול המועד)",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "date": "2017-10-10",
+      "subcat": "major",
+      "title": "Sukkot VI (CH''M)"
+    },
+    {
+      "category": "hebdate",
+      "title": "21st of Tishrei, 5778",
+      "date": "2017-10-11",
+      "hebrew": "כ״א בתשרי תשע״ח"
+    },
+    {
+      "category": "holiday",
+      "subcat": "major",
+      "title": "Sukkot VII (Hoshana Raba)",
+      "memo": "Feast of Tabernacles",
+      "hebrew": "סוכות יום ז׳ (הושענא רבה)",
+      "link": "http://www.hebcal.com/holidays/sukkot",
+      "date": "2017-10-11"
+    },
+    {
+      "hebrew": "כ״ב בתשרי תשע״ח",
+      "date": "2017-10-12",
+      "title": "22nd of Tishrei, 5778",
+      "category": "hebdate"
+    },
+    {
+      "subcat": "major",
+      "yomtov": true,
+      "memo": "Eighth Day of Assembly",
+      "hebrew": "שמיני עצרת",
+      "category": "holiday",
+      "title": "Shmini Atzeret",
+      "link": "http://www.hebcal.com/holidays/shmini-atzeret",
+      "date": "2017-10-12"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "כ״ג בתשרי תשע״ח",
+      "date": "2017-10-13",
+      "title": "23rd of Tishrei, 5778"
+    },
+    {
+      "title": "Simchat Torah",
+      "link": "http://www.hebcal.com/holidays/simchat-torah",
+      "date": "2017-10-13",
+      "category": "holiday",
+      "yomtov": true,
+      "subcat": "major",
+      "hebrew": "שמחת תורה",
+      "memo": "Day of Celebrating the Torah"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ז׳ בחשון תשע״ח",
+      "date": "2017-10-27",
+      "title": "7th of Cheshvan, 5778"
+    },
+    {
+      "title": "Yom HaAliyah",
+      "subcat": "modern",
+      "memo": "Recognizes Aliyah, immigration to the Jewish State of Israel",
+      "hebrew": "יום העלייה",
+      "link": "http://www.hebcal.com/holidays/yom-haaliyah",
+      "date": "2017-10-27",
+      "category": "holiday"
+    },
+    {
+      "hebrew": "כ״ט בחשון תשע״ח",
+      "date": "2017-11-18",
+      "title": "29th of Cheshvan, 5778",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "subcat": "modern",
+      "title": "Sigd",
+      "memo": "Ethiopian Jewish holiday occurring 50 days after Yom Kippur",
+      "date": "2017-11-18",
+      "hebrew": "סיגד",
+      "link": "http://www.hebcal.com/holidays/sigd"
+    },
+    {
+      "category": "hebdate",
+      "title": "24th of Kislev, 5778",
+      "date": "2017-12-12",
+      "hebrew": "כ״ד בכסלו תשע״ח"
+    },
+    {
+      "category": "holiday",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "hebrew": "חנוכה: א׳ נר",
+      "date": "2017-12-12",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "subcat": "major",
+      "title": "Chanukah: 1 Candle"
+    },
+    {
+      "category": "hebdate",
+      "title": "25th of Kislev, 5778",
+      "date": "2017-12-13",
+      "hebrew": "כ״ה בכסלו תשע״ח"
+    },
+    {
+      "category": "holiday",
+      "date": "2017-12-13",
+      "hebrew": "חנוכה: ב׳ נרות",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "title": "Chanukah: 2 Candles",
+      "subcat": "major"
+    },
+    {
+      "title": "26th of Kislev, 5778",
+      "date": "2017-12-14",
+      "hebrew": "כ״ו בכסלו תשע״ח",
+      "category": "hebdate"
+    },
+    {
+      "title": "Chanukah: 3 Candles",
+      "subcat": "major",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "hebrew": "חנוכה: ג׳ נרות",
+      "date": "2017-12-14",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "category": "holiday"
+    },
+    {
+      "category": "hebdate",
+      "title": "27th of Kislev, 5778",
+      "hebrew": "כ״ז בכסלו תשע״ח",
+      "date": "2017-12-15"
+    },
+    {
+      "category": "holiday",
+      "title": "Chanukah: 4 Candles",
+      "subcat": "major",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "hebrew": "חנוכה: ד׳ נרות",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "date": "2017-12-15"
+    },
+    {
+      "category": "hebdate",
+      "date": "2017-12-16",
+      "hebrew": "כ״ח בכסלו תשע״ח",
+      "title": "28th of Kislev, 5778"
+    },
+    {
+      "category": "holiday",
+      "title": "Chanukah: 5 Candles",
+      "subcat": "major",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "hebrew": "חנוכה: ה׳ נרות",
+      "date": "2017-12-16",
+      "link": "http://www.hebcal.com/holidays/chanukah"
+    },
+    {
+      "category": "hebdate",
+      "title": "29th of Kislev, 5778",
+      "hebrew": "כ״ט בכסלו תשע״ח",
+      "date": "2017-12-17"
+    },
+    {
+      "category": "holiday",
+      "title": "Chanukah: 6 Candles",
+      "subcat": "major",
+      "hebrew": "חנוכה: ו׳ נרות",
+      "date": "2017-12-17",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights"
+    },
+    {
+      "category": "hebdate",
+      "hebrew": "ל׳ בכסלו תשע״ח",
+      "date": "2017-12-18",
+      "title": "30th of Kislev, 5778"
+    },
+    {
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "hebrew": "חנוכה: ז׳ נרות",
+      "date": "2017-12-18",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "title": "Chanukah: 7 Candles",
+      "subcat": "major",
+      "category": "holiday"
+    },
+    {
+      "hebrew": "א׳ בטבת תשע״ח",
+      "date": "2017-12-19",
+      "title": "1st of Tevet, 5778",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "hebrew": "חנוכה: ח׳ נרות",
+      "date": "2017-12-19",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights",
+      "title": "Chanukah: 8 Candles",
+      "subcat": "major"
+    },
+    {
+      "title": "2nd of Tevet, 5778",
+      "date": "2017-12-20",
+      "hebrew": "ב׳ בטבת תשע״ח",
+      "category": "hebdate"
+    },
+    {
+      "category": "holiday",
+      "subcat": "major",
+      "title": "Chanukah: 8th Day",
+      "date": "2017-12-20",
+      "hebrew": "חנוכה: יום ח׳",
+      "link": "http://www.hebcal.com/holidays/chanukah",
+      "memo": "The Jewish festival of rededication, also known as the Festival of Lights"
+    },
+    {
+      "category": "hebdate",
+      "title": "10th of Tevet, 5778",
+      "hebrew": "י׳ בטבת תשע״ח",
+      "date": "2017-12-28"
+    },
+    {
+      "category": "holiday",
+      "hebrew": "עשרה בטבת",
+      "date": "2017-12-28",
+      "link": "http://www.hebcal.com/holidays/asara-btevet",
+      "memo": "Fast commemorating the siege of Jerusalem",
+      "subcat": "fast",
+      "title": "Asara B'Tevet"
+    }
+  ],
+  "link": "http://www.hebcal.com/hebcal/?v=1;maj=on;min=on;mod=on;nx=off;year=2017;month=x;ss=off;mf=on;c=off;geo=off;s=off;D=on",
+  "date": "2018-06-12T00:52:55-00:00",
+  "location": {
+    "geo": "none"
+  }
+}
