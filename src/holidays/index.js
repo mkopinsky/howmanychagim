@@ -3,6 +3,7 @@
 // https://www.hebcal.com/home/195/jewish-calendar-rest-api
 // http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on
 import data from './2018.json';
+import parse from 'date-fns/parse';
 
 let hebdates = data
   .items
@@ -17,7 +18,7 @@ let holidays = data
       {
         hebrew_date: date.hebrew,
         hebrew_date_title: date.title,
-        month: new Date(item.date).getMonth()
+        month: parse(item.date).getMonth()
       }
     );
   });
