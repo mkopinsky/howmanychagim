@@ -23,6 +23,7 @@
           header-tag="h5"
           :header="monthTotal(month)">
           <ul class="days">
+            <p v-if="holidays.length == 0">No chagim in {{month}}!</p>
             <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
               <label>
                 <input type="checkbox" :checked="holiday.yomtov" />
