@@ -26,7 +26,7 @@
             <p v-if="holidays.length == 0">No chagim in {{month}}!</p>
             <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
               <label>
-                <input type="checkbox" :checked="holiday.yomtov" />
+                <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)" />
                 {{ format(holiday.date) }} 
                 (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
               </label>
@@ -42,17 +42,27 @@
 
 import holidays from './holidays';
 import format from 'date-fns/format';
+import _keyby from 'lodash.keyby';
+import _mapValues from 'lodash.mapvalues';
 
 export default {
   name: 'app',
   data () {
     return {
-      holidays
+      holidays,
+      selected: _mapValues(
+        _keyby(holidays.all, 'date'),
+        // Default to selecting yomtov days
+        holiday => !!holiday.yomtov
+      )
     }
   },
   methods: {
     format(date) {
       return format(date, 'ddd MMM Do')
+    },
+    toggle(date, event) {
+      this.selected[date] = event.target.checked;
     },
     monthTotal(month) {
       return `${month} <span class="float-right"><span class="badge badge-warning">3</span> <span class="badge badge-secondary">1</span></span>`

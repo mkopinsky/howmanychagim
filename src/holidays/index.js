@@ -33,5 +33,6 @@ months.forEach(function(month, index) {
 });
 
 export default {
-  holidaysByMonth
+  holidaysByMonth,
+  all: holidays,
 }
