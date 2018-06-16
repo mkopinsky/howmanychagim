@@ -44,6 +44,7 @@ import holidays from './holidays';
 import format from 'date-fns/format';
 import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';
+import isWeekend from 'date-fns/is_weekend';
 
 export default {
   name: 'app',
@@ -64,8 +65,20 @@ export default {
     toggle(date, event) {
       this.selected[date] = event.target.checked;
     },
+    isWeekday(holiday) {
+      return holiday.yomtov;
+    },
+    isWeekend(holiday) {
+      return true;
+    },
     monthTotal(month) {
-      return `${month} <span class="float-right"><span class="badge badge-warning">3</span> <span class="badge badge-secondary">1</span></span>`
+      let selected = this.holidays
+        .holidaysByMonth[month]
+        .filter(holiday => this.selected[holiday.date])
+      // debugger;
+      let weekdays = selected.filter(holiday => !isWeekend(holiday.date)).length;
+      let weekends = selected.filter(holiday => isWeekend(holiday.date)).length;
+      return `${month} <span class="float-right"><span class="badge badge-warning">${weekdays}</span> <span class="badge badge-secondary">${weekends}</span></span>`
     }
   }
 }
