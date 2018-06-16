@@ -44,6 +44,7 @@ import holidays from './holidays';
 import format from 'date-fns/format';
 import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';
+import _uniq from 'lodash.uniq';
 import isWeekend from 'date-fns/is_weekend';
 
 export default {
@@ -65,19 +66,15 @@ export default {
     toggle(date, event) {
       this.selected[date] = event.target.checked;
     },
-    isWeekday(holiday) {
-      return holiday.yomtov;
-    },
-    isWeekend(holiday) {
-      return true;
-    },
     monthTotal(month) {
-      let selected = this.holidays
+      let selected = _uniq(
+        this.holidays
         .holidaysByMonth[month]
-        .filter(holiday => this.selected[holiday.date])
-      // debugger;
-      let weekdays = selected.filter(holiday => !isWeekend(holiday.date)).length;
-      let weekends = selected.filter(holiday => isWeekend(holiday.date)).length;
+        .map(holiday => holiday.date)
+        .filter(date => this.selected[date])
+      );
+      let weekends = selected.filter(isWeekend).length;
+      let weekdays = selected.filter(date => !isWeekend(date)).length;
       return `${month} <span class="float-right"><span class="badge badge-warning">${weekdays}</span> <span class="badge badge-secondary">${weekends}</span></span>`
     }
   }
