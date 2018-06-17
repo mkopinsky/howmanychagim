@@ -6,7 +6,6 @@ import data from './2018.json';
 import parse from 'date-fns/parse';
 
 // var  data = fetch('http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on');
-var url = 'http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on';
 
 function organize(data) {
   let hebdates = data
@@ -43,12 +42,14 @@ function sortByMonth(holidays) {
 }
 
 
-export default fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    return {
-      all: organize(data),
-      holidaysByMonth: sortByMonth(organize(data))    
-    };
-  });
-
+export default function(year) {
+  var url = 'http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year='+year+'&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on';
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      return {
+        all: organize(data),
+        holidaysByMonth: sortByMonth(organize(data))    
+      };
+    });
+};

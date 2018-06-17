@@ -48,7 +48,7 @@
 
 <script>
 
-import holidays from './holidays';
+import getHolidays from './holidays';
 import format from 'date-fns/format';
 import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';
@@ -69,21 +69,25 @@ export default {
     };
   },
   mounted() {
-    holidays.then(holidays => {
-      this.holidays = holidays;
-      this.selected = _mapValues(
-        _keyby(this.holidays.all, 'date'),
-        // Default to selecting yomtov days
-        holiday => !!holiday.yomtov
-      );
-    });
+    this.reloadHolidays()
   },
   methods: {
+    reloadHolidays() {
+      getHolidays(this.selectedYear).then(holidays => {
+        this.holidays = holidays;
+        this.selected = _mapValues(
+          _keyby(this.holidays.all, 'date'),
+          // Default to selecting yomtov days
+          holiday => !!holiday.yomtov
+        );
+      });
+    },
     format(date) {
       return format(date, 'ddd MMM Do')
     },
     selectYear(year) {
       this.selectedYear = year;
+      this.reloadHolidays();
     },
     toggle(date, event) {
       this.selected[date] = event.target.checked;
