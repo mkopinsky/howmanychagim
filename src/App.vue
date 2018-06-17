@@ -13,26 +13,35 @@
       </h3>
       <div class="grand-totals mb-3">
         <h4>
-          Total: <span class="badge badge-warning">12</span> work days, <span class="badge badge-secondary">5</span> weekends
+          Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days,
+          <span class="badge badge-secondary">{{totalWeekends()}}</span> weekends
         </h4>
       </div>
     </div>
     <div class="row">
+
       <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.holidaysByMonth">
-        <b-card
-          header-tag="h5"
-          :header="monthTotal(month)">
-          <ul class="days">
+        <div class="card">
+          <h5 class="card-header">
+            {{month}}
+            <span class="float-right">
+              <span class="badge badge-warning">{{ totalWeekdays(month) }}</span>
+              <span class="badge badge-secondary">{{ totalWeekends(month) }}</span>
+            </span>
+          </h5>
+          <div class="card-body">
             <p v-if="holidays.length == 0">No chagim in {{month}}!</p>
-            <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
-              <label>
-                <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)" />
-                {{ format(holiday.date) }} 
-                (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
-              </label>
-            </li>
-          </ul>
-        </b-card>
+            <ul class="days">
+              <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
+                <label>
+                  <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)" />
+                  {{ format(holiday.date) }} 
+                  (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -66,16 +75,29 @@ export default {
     toggle(date, event) {
       this.selected[date] = event.target.checked;
     },
-    monthTotal(month) {
-      let selected = _uniq(
-        this.holidays
-        .holidaysByMonth[month]
+    totalWeekdays(month) {
+      let holidays = month 
+        ? this.holidays.holidaysByMonth[month]
+        : this.holidays.all;
+
+      return _uniq(
+        holidays
         .map(holiday => holiday.date)
         .filter(date => this.selected[date])
-      );
-      let weekends = selected.filter(isWeekend).length;
-      let weekdays = selected.filter(date => !isWeekend(date)).length;
-      return `${month} <span class="float-right"><span class="badge badge-warning">${weekdays}</span> <span class="badge badge-secondary">${weekends}</span></span>`
+        .filter(date => !isWeekend(date))
+      ).length;
+    },
+    totalWeekends(month) {
+      let holidays = month 
+        ? this.holidays.holidaysByMonth[month]
+        : this.holidays.all;
+
+      return _uniq(
+        holidays
+        .map(holiday => holiday.date)
+        .filter(date => this.selected[date])
+        .filter(isWeekend)
+      ).length;
     }
   }
 }
