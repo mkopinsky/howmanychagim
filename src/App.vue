@@ -3,13 +3,12 @@
     <div class="top">
       <h1>How many Chagim?</h1>
       <h3 class="year-selector">
-        <a class="px-1 active">2018</a>
-        <a class="px-1" href="#">2019</a>
-        <a class="px-1" href="#">2020</a>
-        <span>&ndash;</span>
-        <a class="px-1" href="#">5778</a>
-        <a class="px-1" href="#">5779</a>
-        <a class="px-1" href="#">5780</a>
+        <a 
+          v-for="year in availableYears" 
+          :class="{'px-1': true, 'active': year==selectedYear}"
+          href="#"
+          @click="selectYear(year)"
+        >{{year}}</a>
       </h3>
       <div class="grand-totals mb-3">
         <h4>
@@ -60,17 +59,31 @@ export default {
   name: 'app',
   data () {
     return {
-      holidays,
-      selected: _mapValues(
-        _keyby(holidays.all, 'date'),
+      availableYears: ['2018', '2019', '2020'],
+      selectedYear: '2018',
+      holidays: {
+        all: [],
+        holidaysByMonth: {}
+      },
+      selected: {}
+    };
+  },
+  mounted() {
+    holidays.then(holidays => {
+      this.holidays = holidays;
+      this.selected = _mapValues(
+        _keyby(this.holidays.all, 'date'),
         // Default to selecting yomtov days
         holiday => !!holiday.yomtov
-      )
-    }
+      );
+    });
   },
   methods: {
     format(date) {
       return format(date, 'ddd MMM Do')
+    },
+    selectYear(year) {
+      this.selectedYear = year;
     },
     toggle(date, event) {
       this.selected[date] = event.target.checked;
@@ -114,6 +127,7 @@ export default {
     text-align: center;
     .year-selector .active {
       text-decoration: underline dotted;
+      color: black;
     }
   }
 
