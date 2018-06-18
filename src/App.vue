@@ -43,6 +43,9 @@
         </div>
       </div>
     </div>
+    <div id="footer" class="text-center">
+      &copy; 2018 Michael Kopinsky. Licensed under MIT.
+    </div>
   </div>
 </template>
 
