@@ -68,7 +68,7 @@
         <div class="card-footer mb-0">
           <h4>Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days</h4>
           <ul>
-            <li>April: <span title="Pesach 1" v-b-tooltip.hover>Mon 9th</span>, Tue 10th, Mon 17th</li>
+            <li>April: <span title="Pesach 1" v-b-tooltip.hover>Mon 9th</span>, <span title="Pesach 2" v-b-tooltip.hover>Tue 10th</span>, <span title="Pesach 7" v-b-tooltip.hover>Mon 17th</span></li>
             <li>June: Wed 9th</li>
             <li>September: Wed 9th, Thu 10th, Fri 21st, Wed 25th, Thu 26th</li>
             <li>October: Wed 2nd, Thu 3rd</li>
@@ -89,6 +89,7 @@
 
     </div>
     <div class="row col-lg-9 offset-lg-2 text-center">
+      <h4>Adjust your days off</h4>
       <calendar
         value="2018-01-02"
         :hasInput="false"
@@ -121,7 +122,7 @@
         </div>
       </div>
     </div>
-    <div id="footer" class="text-center">
+    <div id="footer" class="text-center mt-4">
       &copy; 2018 Michael Kopinsky. Licensed under MIT.
     </div>
   </div>
