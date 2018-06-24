@@ -2,20 +2,47 @@
   <div id="app">
     <div class="top">
       <h1>How many Chagim?</h1>
-      <h3 class="year-selector">
-        <a 
-          v-for="year in availableYears" 
-          :class="{'px-1': true, 'active': year==selectedYear}"
-          href="#"
-          @click="selectYear(year)"
-        >{{year}}</a>
-      </h3>
-      <div class="grand-totals mb-3">
-        <h4>
-          Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days,
-          <span class="badge badge-secondary">{{totalWeekends()}}</span> weekends
+    </div>
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card">
+        <h5 class="card-header d-none">
+          Settings
+        </h5>
+        <div class="card-body">
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Select a Year</label>
+            <div class="col-sm-9 btn-group-toggle btn-group" data-toggle="buttons">
+              <label v-for="year in availableYears" class="btn btn-outline-primary" :class="{active: year==selectedYear}">
+                <input type="radio" :value="year" v-model="selectedYear" />
+                {{ year }}
+              </label>
+            </div>
+          </div>
+        </div>
+        <h4 class="card-footer mb-0">
+          Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days
         </h4>
       </div>
+    </div>
+    <div class="row d-none">
+      <div class="col-lg-3">
+        <h2>Select a year</h2>
+        <div class="btn-group-toggle btn-group" data-toggle="buttons">
+          <label v-for="year in availableYears" class="btn btn-outline-primary" :class="{active: year==selectedYear}">
+            <input type="radio" :value="year" v-model="selectedYear" />
+            {{ year }}
+          </label>
+        </div>
+<!-- 
+        <div class="form-check" v-for="year in availableYears">
+          <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="year" :value="year" v-model="selectedYear" />
+            {{year}}
+          </label>
+        </div>
+ -->
+      </div>
+
     </div>
     <div class="row">
 
