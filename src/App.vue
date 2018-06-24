@@ -21,26 +21,8 @@
           <div class="form-group row">
             <label class="col-sm-5 col-form-label">Choose your Work Week</label>
             <div class="col-sm-7 btn-group-toggle btn-group" data-toggle="buttons">
-              <label class="btn btn-outline-primary">
-                <input type="checkbox" /> S
-              </label>
-              <label class="btn btn-outline-primary active">
-                <input type="checkbox" checked /> M
-              </label>
-              <label class="btn btn-outline-primary active">
-                <input type="checkbox" checked /> T
-              </label>
-              <label class="btn btn-outline-primary active">
-                <input type="checkbox" checked /> W
-              </label>
-              <label class="btn btn-outline-primary active">
-                <input type="checkbox" checked /> T
-              </label>
-              <label class="btn btn-outline-primary active">
-                <input type="checkbox" checked /> F
-              </label>
-              <label class="btn btn-outline-primary">
-                <input type="checkbox" checked /> S
+              <label v-for="day, i in weekdays" class="btn btn-outline-primary" @click="toggleDay(day)" :class="{active: settings.weekdays[day]}">
+                {{day[0]}}
               </label>
             </div>
           </div>
@@ -83,9 +65,15 @@
           </div>
 
         </div>
-        <h4 class="card-footer mb-0">
-          Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days
-        </h4>
+        <div class="card-footer mb-0">
+          <h4>Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days</h4>
+          <ul>
+            <li>April: <span title="Pesach 1" v-b-tooltip.hover>Mon 9th</span>, Tue 10th, Mon 17th</li>
+            <li>June: Wed 9th</li>
+            <li>September: Wed 9th, Thu 10th, Fri 21st, Wed 25th, Thu 26th</li>
+            <li>October: Wed 2nd, Thu 3rd</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="row d-none">
@@ -100,7 +88,14 @@
       </div>
 
     </div>
-    <div class="row">
+    <div class="row col-lg-9 offset-lg-2 text-center">
+      <calendar
+        value="2018-01-02"
+        :hasInput="false"
+        :pane="12"
+      />
+    </div>
+    <div class="row d-none">
 
       <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.holidaysByMonth">
         <div class="card">
@@ -117,7 +112,7 @@
               <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
                 <label>
                   <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)" />
-                  {{ format(holiday.date) }} 
+                  {{ format(holiday.date) }}
                   (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
                 </label>
               </li>
@@ -140,12 +135,29 @@ import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';
 import _uniq from 'lodash.uniq';
 import isWeekend from 'date-fns/is_weekend';
+import moment from 'moment';
+
+import 'vue2-slot-calendar/lib/calendar.min.css';
+import calendar from 'vue2-slot-calendar/lib/calendar';
 
 export default {
   name: 'app',
   data () {
     return {
       availableYears: ['2018', '2019', '2020'],
+      weekdays: moment.weekdays(),
+      settings: {
+        year: 2018,
+        weekdays: {
+          'Sunday': false,
+          'Monday': true,
+          'Tuesday': true,
+          'Wednesday': true,
+          'Thursday': true,
+          'Friday': true,
+          'Saturday': false,
+        }
+      },
       selectedYear: '2018',
       holidays: {
         all: [],
@@ -153,6 +165,9 @@ export default {
       },
       selected: {}
     };
+  },
+  components: {
+      calendar
   },
   mounted() {
     this.reloadHolidays()
@@ -174,6 +189,9 @@ export default {
     selectYear(year) {
       this.selectedYear = year;
       this.reloadHolidays();
+    },
+    toggleDay(day) {
+      this.settings.weekdays[day] = !this.settings.weekdays[day];
     },
     toggle(date, event) {
       this.selected[date] = event.target.checked;
