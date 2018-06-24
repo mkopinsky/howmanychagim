@@ -10,14 +10,78 @@
         </h5>
         <div class="card-body">
           <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">Select a Year</label>
-            <div class="col-sm-9 btn-group-toggle btn-group" data-toggle="buttons">
+            <label class="col-sm-5 col-form-label">Select a Year</label>
+            <div class="col-sm-7 btn-group-toggle btn-group" data-toggle="buttons">
               <label v-for="year in availableYears" class="btn btn-outline-primary" :class="{active: year==selectedYear}">
                 <input type="radio" :value="year" v-model="selectedYear" />
                 {{ year }}
               </label>
             </div>
           </div>
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Choose your Work Week</label>
+            <div class="col-sm-7 btn-group-toggle btn-group" data-toggle="buttons">
+              <label class="btn btn-outline-primary">
+                <input type="checkbox" /> S
+              </label>
+              <label class="btn btn-outline-primary active">
+                <input type="checkbox" checked /> M
+              </label>
+              <label class="btn btn-outline-primary active">
+                <input type="checkbox" checked /> T
+              </label>
+              <label class="btn btn-outline-primary active">
+                <input type="checkbox" checked /> W
+              </label>
+              <label class="btn btn-outline-primary active">
+                <input type="checkbox" checked /> T
+              </label>
+              <label class="btn btn-outline-primary active">
+                <input type="checkbox" checked /> F
+              </label>
+              <label class="btn btn-outline-primary">
+                <input type="checkbox" checked /> S
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-5 col-form-label">What will you take off?</label>
+            <div class="col-sm-7">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox"  id="defaultCheck1" checked>
+                <label class="form-check-label" for="defaultCheck1">
+                  Yom tov
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="defaultCheck2">
+                <label class="form-check-label" for="defaultCheck2">
+                  Chol Hamoed
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="defaultCheck3">
+                <label class="form-check-label" for="defaultCheck3">
+                  Purim
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="defaultCheck4" checked>
+                <label class="form-check-label" for="defaultCheck4">
+                  Tisha B'av
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="defaultCheck5">
+                <label class="form-check-label" for="defaultCheck5">
+                  Minor Fast Days
+                </label>
+              </div>
+
+            </div>
+          </div>
+
         </div>
         <h4 class="card-footer mb-0">
           Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days
@@ -33,14 +97,6 @@
             {{ year }}
           </label>
         </div>
-<!-- 
-        <div class="form-check" v-for="year in availableYears">
-          <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="year" :value="year" v-model="selectedYear" />
-            {{year}}
-          </label>
-        </div>
- -->
       </div>
 
     </div>
