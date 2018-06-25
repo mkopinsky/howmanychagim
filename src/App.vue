@@ -69,6 +69,7 @@
           <h4>Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days</h4>
           <ul>
             <li v-for="holidays, month in selectedHolidaysByMonth" v-if="holidays.length > 0">
+              <span class="badge badge-warning">{{ totalWeekdays(month) }}</span>
               {{ month }}:
               <span v-for="holiday, i in holidays">
                 <span style="border-bottom: 1px dotted black" v-b-tooltip.hover :title="holiday.title">
