@@ -196,7 +196,7 @@ export default {
         this.selected = _mapValues(
           _keyby(this.holidays.all, 'date'),
           // Default to selecting yomtov days
-          holiday => !!holiday.yomtov
+          holiday => !!holiday.yomtov && !isWeekend(holiday.date)
         );
       });
     },
