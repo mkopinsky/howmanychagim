@@ -68,10 +68,16 @@
         <div class="card-footer mb-0">
           <h4>Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days</h4>
           <ul>
-            <li>April: <span title="Pesach 1" v-b-tooltip.hover>Mon 9th</span>, <span title="Pesach 2" v-b-tooltip.hover>Tue 10th</span>, <span title="Pesach 7" v-b-tooltip.hover>Mon 17th</span></li>
-            <li>June: Wed 9th</li>
-            <li>September: Wed 9th, Thu 10th, Fri 21st, Wed 25th, Thu 26th</li>
-            <li>October: Wed 2nd, Thu 3rd</li>
+            <li v-for="holidays, month in selectedHolidaysByMonth" v-if="holidays.length > 0">
+              {{ month }}:
+              <span v-for="holiday, i in holidays">
+                <span style="border-bottom: 1px dotted black" v-b-tooltip.hover :title="holiday.title">
+                  {{ formatShort(holiday.date) }}
+                </span>
+                <span v-if="i < holidays.length - 1">, </span>
+              </span>
+
+            </li>
           </ul>
         </div>
       </div>
@@ -173,6 +179,15 @@ export default {
   mounted() {
     this.reloadHolidays()
   },
+  computed: {
+    selectedHolidaysByMonth() {
+      return _mapValues(
+        this.holidays.holidaysByMonth,
+          holidays => holidays.filter(holiday => this.selected[holiday.date])
+        );
+    },
+
+  },
   methods: {
     reloadHolidays() {
       getHolidays(this.selectedYear).then(holidays => {
@@ -186,6 +201,9 @@ export default {
     },
     format(date) {
       return format(date, 'ddd MMM Do')
+    },
+    formatShort(date) {
+      return format(date, 'ddd Do')
     },
     selectYear(year) {
       this.selectedYear = year;
