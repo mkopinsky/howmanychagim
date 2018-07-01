@@ -70,23 +70,23 @@ export default {
       // TODO: emit an event to parent
     },
     getDayCount (year, month) {
-      const dict = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+      const dict = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
       if (month === 1) {
         if ((year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0)) {
-          return 29
+          return 29;
         }
       }
-      return dict[month]
+      return dict[month];
     },
     getYearMonth (year, month) {
       if (month > 11) {
-        year++
-        month = 0
+        year++;
+        month = 0;
       } else if (month < 0) {
-        year--
-        month = 11
+        year--;
+        month = 11;
       }
-      return {year: year, month: month}
+      return {year: year, month: month};
     },
     getDateRange() {
       this.dateRange = []
