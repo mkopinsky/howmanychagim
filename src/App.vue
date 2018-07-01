@@ -98,9 +98,8 @@
     <div class="row col-lg-9 offset-lg-2 text-center">
       <h4>Adjust your days off</h4>
       <calendar
-        value="2018-01-02"
-        :hasInput="false"
-        :pane="12"
+        :year="selectedYear"
+        :selectedDays="selected"
       />
     </div>
     <div class="row d-none">
@@ -146,7 +145,7 @@ import isWeekend from 'date-fns/is_weekend';
 import moment from 'moment';
 
 import 'vue2-slot-calendar/lib/calendar.min.css';
-import calendar from 'vue2-slot-calendar/lib/calendar';
+import calendar from './calendar/index.vue';
 
 export default {
   name: 'app',
