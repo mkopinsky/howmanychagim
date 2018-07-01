@@ -9,8 +9,8 @@
         <div>
           <span v-for="d in dateRange[i]" class="day-cell" :class="getItemClasses(d)" @click="daySelect(d, $event)">
             <div>
-                {{d.text}}
-              </div>
+              {{d.text}}
+            </div>
           </span>
         </div>
       </div>
@@ -54,23 +54,33 @@ export default {
   methods: {
     getItemClasses (d) {
       const dateStr = d.date.toJSON().substring(0,10);
-      let classes = ['datepicker-item'];
+      let classes = [];
       if (!d.isCurrentMonth) {
         classes.push('gray');
       } else if (this.selectedDays[dateStr]) {
-        classes.push('active');
+        // classes.push('active');
       }
 
-      if ('isWeekend') {
-        classes.push('datepicker-weekend');
+      if (Math.random() < 0.05) {
+        classes.push('active');
       }
-      if ('isSelected') {
-        // classes.push('datepicker-dateRange-item-active');
-      }
-      if ('isYomTov') {
-        classes.push('datepicker-yomtov');
-      } else if ('isChag') {
-        classes.push('datepicker-holiday')
+      if (Math.random() < 0.05) {
+        classes.push('yomtov');
+        if (Math.random() < 0.5) {
+          classes.push('active');
+        }
+        if (Math.random() < 0.1) {
+          classes.push('weekend');
+        }
+
+      } else if (Math.random() < 0.05) {
+        classes.push('holiday')
+        if (Math.random() < 0.5) {
+          classes.push('active');
+          if (Math.random() < 0.5) {
+            classes.push('weekend');
+          }
+        }
       }
 
       return classes.join(' ');
@@ -151,6 +161,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "../../node_modules/bootstrap/scss/bootstrap";
 /*!
  * Based on vue2-calendar v2.1.4
  * (c) 2018 Terry <gidcai@gmail.com>
@@ -159,6 +170,7 @@ export default {
 .month-container {
   width: 218px;
   float: left;
+  min-height: 240px;
 }
 .month-body {
   padding: 10px 10px;
@@ -167,7 +179,7 @@ export default {
   span {
     display: inline-block;
     width: 28px;
-    line-height: 28px;
+    // line-height: 28px;
     height: 28px;
     text-align: center;
 
@@ -181,8 +193,29 @@ export default {
         background-color: #eeeeee;
       }
 
-      &.gray {
+      &.gray, &.weekend {
         color: #999;
+      }
+
+      &.yomtov {
+        border: 1px solid $danger;
+
+        &.active:hover,
+        &.active {
+          background: $danger;
+          color: white;
+        }
+      }
+      &.weekend {
+        opacity: 0.5;
+      }
+      &.holiday {
+        border: 1px solid $warning;
+        &.active:hover,
+        &.active {
+          background: $warning;
+          color: white;
+        }
       }
       &.active:hover,
       &.active {
