@@ -3,13 +3,13 @@
     <div class="month-container" v-for="month, i in text.months">
       <div class="month-body">
         <p>{{month}}</p>
-        <div class="dayOfWeekLabels">
-          <span v-for="w in text.daysOfWeek">{{w}}</span>
+        <div>
+          <span v-for="w in text.daysOfWeek" class="dayOfWeekLabel">{{w}}</span>
         </div>
         <div>
           <span v-for="d in dateRange[i]" class="day-cell" :class="getItemClasses(d)" @click="daySelect(d, $event)">
             <div>
-              {{d.text}}
+              {{d.date.date()}}
             </div>
           </span>
         </div>
@@ -25,6 +25,9 @@
  * 
  * https://registry.npmjs.org/vue2-slot-calendar
  */
+
+import moment from 'moment';
+
 export default {
   name: 'calendar',
   props: {
@@ -44,115 +47,82 @@ export default {
   data () {
     return {
       dateRange: [],
-      currDate: new Date(this.year, 0, 1),
       text: {
-        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-        months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        daysOfWeek: moment.weekdaysMin(),
+        months: moment.months(),
       }
     };
   },
   methods: {
     getItemClasses (d) {
-      const dateStr = d.date.toJSON().substring(0,10);
+      const dateStr = d.date.format('YYYY-MM-DD');
       let classes = [];
       if (!d.isCurrentMonth) {
         classes.push('gray');
       } else if (this.selectedDays[dateStr]) {
-        // classes.push('active');
-      }
-
-      if (Math.random() < 0.05) {
         classes.push('active');
       }
-      if (Math.random() < 0.05) {
-        classes.push('yomtov');
-        if (Math.random() < 0.5) {
-          classes.push('active');
-        }
-        if (Math.random() < 0.1) {
-          classes.push('weekend');
-        }
 
-      } else if (Math.random() < 0.05) {
-        classes.push('holiday')
-        if (Math.random() < 0.5) {
-          classes.push('active');
-          if (Math.random() < 0.5) {
-            classes.push('weekend');
-          }
-        }
-      }
+      // if (Math.random() < 0.05) {
+      //   classes.push('active');
+      // }
+      // if (Math.random() < 0.05) {
+      //   classes.push('yomtov');
+      //   if (Math.random() < 0.5) {
+      //     classes.push('active');
+      //   }
+      //   if (Math.random() < 0.1) {
+      //     classes.push('weekend');
+      //   }
+
+      // } else if (Math.random() < 0.05) {
+      //   classes.push('holiday')
+      //   if (Math.random() < 0.5) {
+      //     classes.push('active');
+      //     if (Math.random() < 0.5) {
+      //       classes.push('weekend');
+      //     }
+      //   }
+      // }
 
       return classes.join(' ');
     },
     daySelect(d, event) {
       // TODO: emit an event to parent
     },
-    getDayCount (year, month) {
-      const dict = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-      if (month === 1) {
-        if ((year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0)) {
-          return 29;
-        }
-      }
-      return dict[month];
-    },
-    getYearMonth (year, month) {
-      if (month > 11) {
-        year++;
-        month = 0;
-      } else if (month < 0) {
-        year--;
-        month = 11;
-      }
-      return {year: year, month: month};
-    },
     getDateRange() {
-      this.dateRange = []
+      this.dateRange = [];
       for (let p = 0; p < 12; p++) {
-        let currMonth = new Date(2018, p);
-        let time = {
-          year: currMonth.getFullYear(),
-          month: currMonth.getMonth()
-        }
         this.dateRange[p] = []
-        const currMonthFirstDay = new Date(time.year, time.month, 1)
-        let firstDayWeek = currMonthFirstDay.getDay() + 1
-        if (firstDayWeek === 0) {
-          firstDayWeek = 7
-        }
-        const dayCount = this.getDayCount(time.year, time.month)
-        if (firstDayWeek > 1) {
-          const preMonth = this.getYearMonth(time.year, time.month - 1)
-          const prevMonthDayCount = this.getDayCount(preMonth.year, preMonth.month)
-          for (let i = 1; i < firstDayWeek; i++) {
-            const dayText = prevMonthDayCount - firstDayWeek + i + 1
-            this.dateRange[p].push({
-              text: dayText,
-              date: new Date(preMonth.year, preMonth.month, dayText),
-              isCurrentMonth: false
-            })
-          }
-        }
-        for (let i = 1; i <= dayCount; i++) {
-          const date = new Date(time.year, time.month, i)
-          const week = date.getDay()
+
+        const currMonth = moment({year: this.year, month: p, day: 1});
+        const prevMonth = moment(currMonth).subtract(1, 'month');
+        const nextMonth = moment(currMonth).add(1, 'month');
+
+        // Add any needed days from the previous month
+        for (let i = 0; i < currMonth.day(); i++) {
+          let date = moment(currMonth).subtract(currMonth.day() - i, 'days');
           this.dateRange[p].push({
-            text: i,
+            date: date,
+            isCurrentMonth: false
+          });
+        }
+        // Current month
+        for (let i = 1; i <= currMonth.daysInMonth(); i++) {
+          let date = moment(currMonth).date(i);
+          this.dateRange[p].push({
             date: date,
             isCurrentMonth: true
-          })
+          });
         }
-        if (this.dateRange[p].length < 42) {
-          const nextMonthNeed = (42 - this.dateRange[p].length) % 7;
-          const nextMonth = this.getYearMonth(time.year, time.month + 1)
-          for (let i = 1; i <= nextMonthNeed; i++) {
-            this.dateRange[p].push({
-              text: i,
-              date: new Date(nextMonth.year, nextMonth.month, i),
-              isCurrentMonth: false
-            })
-          }
+        // Next month (if needed)
+        const nextMonthNeed = (42 - this.dateRange[p].length) % 7;
+        for (let i = 0; i < nextMonthNeed; i++) {
+          let date = moment(nextMonth).date(i + 1);
+          this.dateRange[p].push({
+            date: date,
+            isCurrentMonth: false
+          })
         }
       }
       
@@ -170,7 +140,7 @@ export default {
 .month-container {
   width: 218px;
   float: left;
-  min-height: 240px;
+  min-height: 260px;
 }
 .month-body {
   padding: 10px 10px;
@@ -179,11 +149,11 @@ export default {
   span {
     display: inline-block;
     width: 28px;
-    // line-height: 28px;
+    line-height: 28px;
     height: 28px;
     text-align: center;
 
-    .dayOfWeekLabels & {
+    &.dayOfWeekLabel {
       font-weight: bold;
     }
     &.day-cell {
@@ -191,6 +161,13 @@ export default {
 
       &:hover {
         background-color: #eeeeee;
+      }
+
+      &.active:hover,
+      &.active {
+        background: $primary;
+        border: 1px solid $primary;
+        color: white;
       }
 
       &.gray, &.weekend {
@@ -216,11 +193,6 @@ export default {
           background: $warning;
           color: white;
         }
-      }
-      &.active:hover,
-      &.active {
-        background: #3276b1;
-        color: white;
       }
     }
   }
