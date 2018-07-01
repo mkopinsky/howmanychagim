@@ -1,11 +1,4 @@
-
-// TODO (maybe): fetch data via API rather than stored on disk
-// https://www.hebcal.com/home/195/jewish-calendar-rest-api
-// http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on
-import data from './2018.json';
 import parse from 'date-fns/parse';
-
-// var  data = fetch('http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on');
 
 function organize(data) {
   let hebdates = data
@@ -30,7 +23,7 @@ function organize(data) {
 }
 function sortByMonth(holidays) {
   let holidaysByMonth = {};
-  let months = [
+  const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
@@ -43,7 +36,9 @@ function sortByMonth(holidays) {
 
 
 export default function(year) {
-  var url = 'http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year='+year+'&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on';
+  // TODO: Pull hebcal API access into a separate module with a clear API
+  // https://www.hebcal.com/home/195/jewish-calendar-rest-api
+  const url = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year='+year+'&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on';
   return fetch(url)
     .then(response => response.json())
     .then(data => {
