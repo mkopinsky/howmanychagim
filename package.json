@@ -18,8 +18,7 @@
     "lodash.uniq": "^4.5.0",
     "moment": "^2.22.2",
     "popper.js": "^1.12.9",
-    "vue": "^2.5.3",
-    "vue2-slot-calendar": "^2.1.4"
+    "vue": "^2.5.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

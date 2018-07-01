@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="datepicker-inner" v-for="month, i in text.months">
-      <div class="datepicker-body">
+    <div class="month-container" v-for="month, i in text.months">
+      <div class="month-body">
         <p>{{month}}</p>
-        <div class="datepicker-weekRange">
+        <div class="dayOfWeekLabels">
           <span v-for="w in text.daysOfWeek">{{w}}</span>
         </div>
-        <div class="datepicker-dateRange">
+        <div>
           <span v-for="d in dateRange[i]" class="day-cell" :class="getItemClasses(d)" @click="daySelect(d, $event)">
             <div>
                 {{d.text}}
@@ -54,14 +54,23 @@ export default {
   methods: {
     getItemClasses (d) {
       const dateStr = d.date.toJSON().substring(0,10);
-      let classes = [];
+      let classes = ['datepicker-item'];
       if (!d.isCurrentMonth) {
-        classes.push('datepicker-item-gray');
+        classes.push('gray');
+      } else if (this.selectedDays[dateStr]) {
+        classes.push('active');
       }
-      // debugger;
-      // TODO: set 'datepicker-dateRange-item-active' class on selected days
-      else if (this.selectedDays[dateStr]) {
-        classes.push('datepicker-dateRange-item-active');
+
+      if ('isWeekend') {
+        classes.push('datepicker-weekend');
+      }
+      if ('isSelected') {
+        // classes.push('datepicker-dateRange-item-active');
+      }
+      if ('isYomTov') {
+        classes.push('datepicker-yomtov');
+      } else if ('isChag') {
+        classes.push('datepicker-holiday')
       }
 
       return classes.join(' ');
@@ -141,3 +150,46 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+/*!
+ * Based on vue2-calendar v2.1.4
+ * (c) 2018 Terry <gidcai@gmail.com>
+ * https://github.com/icai/vue2-calendar#readme
+ */
+.month-container {
+  width: 218px;
+  float: left;
+}
+.month-body {
+  padding: 10px 10px;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    width: 28px;
+    line-height: 28px;
+    height: 28px;
+    text-align: center;
+
+    .dayOfWeekLabels & {
+      font-weight: bold;
+    }
+    &.day-cell {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #eeeeee;
+      }
+
+      &.gray {
+        color: #999;
+      }
+      &.active:hover,
+      &.active {
+        background: #3276b1;
+        color: white;
+      }
+    }
+  }
+}
+</style>

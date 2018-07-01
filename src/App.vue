@@ -143,7 +143,6 @@ import _uniq from 'lodash.uniq';
 import isWeekend from 'date-fns/is_weekend';
 import moment from 'moment';
 
-import 'vue2-slot-calendar/lib/calendar.min.css';
 import calendar from './calendar/index.vue';
 
 export default {
