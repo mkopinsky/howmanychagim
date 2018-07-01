@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-light">
     <div class="top">
       <h1>How many Chagim?</h1>
     </div>
@@ -66,10 +66,10 @@
 
         </div>
         <div class="card-footer mb-0">
-          <h4>Total: <span class="badge badge-warning">{{totalWeekdays()}}</span> work days</h4>
+          <h4>Total: <span class="badge badge-primary">{{totalWeekdays()}}</span> work days</h4>
           <ul>
             <li v-for="holidays, month in selectedHolidaysByMonth" v-if="holidays.length > 0">
-              <span class="badge badge-warning">{{ totalWeekdays(month) }}</span>
+              <span class="badge badge-primary">{{ totalWeekdays(month) }}</span>
               {{ month }}:
               <span v-for="holiday, i in holidays">
                 <span style="border-bottom: 1px dotted black" v-b-tooltip.hover :title="holiday.title">
@@ -96,7 +96,6 @@
 
     </div>
     <div class="row col-lg-9 offset-lg-2 text-center">
-      <h4>Adjust your days off</h4>
       <calendar
         :year="selectedYear"
         :selectedDays="selected"
@@ -244,12 +243,22 @@ export default {
 </script>
 
 <style lang="scss">
+$enable-gradients: true;
+$theme-colors: (
+  "primary": #3276b1,
+  "danger": #ff4136
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap-vue/dist/bootstrap-vue.css";
+
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin: 60px 30px 20px;
+  padding: 60px 30px 20px;
   .top {
     text-align: center;
     .year-selector .active {
