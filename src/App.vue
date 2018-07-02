@@ -269,14 +269,11 @@ export default {
 </script>
 
 <style lang="scss">
-$theme-colors: (
-  "primary": #3276b1,
-  "danger": #ff4136
-);
+$primary: #3276b1;
+$danger: #ff4136;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/bootstrap-vue/dist/bootstrap-vue.css";
-
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -307,6 +304,30 @@ $theme-colors: (
 
   span.total {
     font-weight: bold;    
+  }
+
+  .day-cell {
+
+    &.yomtov {
+      border: 1px solid $primary;
+
+      &.active:hover,
+      &.active {
+        background: $primary;
+        color: white;
+      }
+    }
+    &.weekend, &.gray {
+      opacity: 0.7;
+    }
+    &.holiday {
+      border: 1px solid $warning;
+      &.active:hover,
+      &.active {
+        background: $warning;
+        color: white;
+      }
+    }
   }
 }
 

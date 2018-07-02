@@ -144,27 +144,6 @@ export default {
         border: 1px solid $primary;
         color: white;
       }
-
-      &.yomtov {
-        border: 1px solid $danger;
-
-        &.active:hover,
-        &.active {
-          background: $danger;
-          color: white;
-        }
-      }
-      &.weekend, &.gray {
-        opacity: 0.7;
-      }
-      &.holiday {
-        border: 1px solid $warning;
-        &.active:hover,
-        &.active {
-          background: $warning;
-          color: white;
-        }
-      }
     }
   }
 }
