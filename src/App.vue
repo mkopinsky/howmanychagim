@@ -99,6 +99,7 @@
       <calendar
         :year="selectedYear"
         :selectedDays="selected"
+        :getClassesForDate="getClassesForDate"
       />
     </div>
     <div class="row d-none">
@@ -117,7 +118,7 @@
             <ul class="days">
               <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
                 <label>
-                  <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)" />
+                  <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date)" />
                   {{ format(holiday.date) }}
                   (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
                 </label>
@@ -187,13 +188,39 @@ export default {
 
   },
   methods: {
+    getClassesForDate(date, month) {
+      if (date.format('MMMM') != month) {
+        return 'gray';
+      }
+
+      const dateStr = date.format('YYYY-MM-DD');
+      let classes = [];
+      if (this.selected[dateStr]) {
+        classes.push('active');
+      }
+
+      if (isWeekend(dateStr)) {
+        classes.push('weekend');
+      }
+
+      let holidays = this.holidays.all.filter(holiday => holiday.date == dateStr);
+      holidays.forEach(holiday => {
+        if (!!holiday.yomtov) {
+          classes.push('yomtov');
+        } else {
+          classes.push('holiday');
+        }
+      });
+
+      return classes.join(' ');
+    },
     reloadHolidays() {
       getHolidays(this.selectedYear).then(holidays => {
         this.holidays = holidays;
         this.selected = _mapValues(
           _keyby(this.holidays.all, 'date'),
           // Default to selecting yomtov days
-          holiday => !!holiday.yomtov && !isWeekend(holiday.date)
+          holiday => !!holiday.yomtov // && !isWeekend(holiday.date)
         );
       });
     },
@@ -210,8 +237,8 @@ export default {
     toggleDay(day) {
       this.settings.weekdays[day] = !this.settings.weekdays[day];
     },
-    toggle(date, event) {
-      this.selected[date] = event.target.checked;
+    toggle(date) {
+      this.selected[date] = !this.selected[date];
     },
     totalWeekdays(month) {
       let holidays = month 
@@ -242,7 +269,6 @@ export default {
 </script>
 
 <style lang="scss">
-$enable-gradients: true;
 $theme-colors: (
   "primary": #3276b1,
   "danger": #ff4136

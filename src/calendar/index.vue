@@ -7,7 +7,7 @@
           <span v-for="w in text.daysOfWeek" class="dayOfWeekLabel">{{w}}</span>
         </div>
         <div>
-          <span v-for="d in dateRange[i]" class="day-cell" :class="getItemClasses(d)" @click="daySelect(d, $event)">
+          <span v-for="d in dateRange[i]" class="day-cell" :class="getClassesForDate(d.date, month)" @click="daySelect(d, $event)">
             <div>
               {{d.date.date()}}
             </div>
@@ -39,6 +39,14 @@ export default {
     },
     year: {
       type: [Number, String]
+    },
+    getClassesForDate: {
+      type: Function,
+      default () {
+        return function (date) {
+          return '';
+        }
+      }
     }
   },
   mounted () {
@@ -54,41 +62,8 @@ export default {
     };
   },
   methods: {
-    getItemClasses (d) {
-      const dateStr = d.date.format('YYYY-MM-DD');
-      let classes = [];
-      if (!d.isCurrentMonth) {
-        classes.push('gray');
-      } else if (this.selectedDays[dateStr]) {
-        classes.push('active');
-      }
-
-      // if (Math.random() < 0.05) {
-      //   classes.push('active');
-      // }
-      // if (Math.random() < 0.05) {
-      //   classes.push('yomtov');
-      //   if (Math.random() < 0.5) {
-      //     classes.push('active');
-      //   }
-      //   if (Math.random() < 0.1) {
-      //     classes.push('weekend');
-      //   }
-
-      // } else if (Math.random() < 0.05) {
-      //   classes.push('holiday')
-      //   if (Math.random() < 0.5) {
-      //     classes.push('active');
-      //     if (Math.random() < 0.5) {
-      //       classes.push('weekend');
-      //     }
-      //   }
-      // }
-
-      return classes.join(' ');
-    },
     daySelect(d, event) {
-      // TODO: emit an event to parent
+      this.$parent.toggle(d.date.format('YYYY-MM-DD'))
     },
     getDateRange() {
       this.dateRange = [];
@@ -170,10 +145,6 @@ export default {
         color: white;
       }
 
-      &.gray, &.weekend {
-        color: #999;
-      }
-
       &.yomtov {
         border: 1px solid $danger;
 
@@ -183,8 +154,8 @@ export default {
           color: white;
         }
       }
-      &.weekend {
-        opacity: 0.5;
+      &.weekend, &.gray {
+        opacity: 0.7;
       }
       &.holiday {
         border: 1px solid $warning;
