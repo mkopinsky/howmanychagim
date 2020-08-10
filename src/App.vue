@@ -62,8 +62,8 @@ export default {
   name: 'app',
   data () {
     return {
-      availableYears: ['2018', '2019', '2020'],
-      selectedYear: '2018',
+      availableYears: ['2020', '2021', '2022', '2023'],
+      selectedYear: '2020',
       holidays: {
         all: [],
         holidaysByMonth: {}
