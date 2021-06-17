@@ -1,10 +1,11 @@
 <template>
   <div id="app">
+    <CornerBanner url="https://github.com/mkopinsky/howmanychagim"/>
     <div class="top">
       <h1>How many Chagim?</h1>
       <h3 class="year-selector">
-        <a 
-          v-for="year in availableYears" 
+        <a
+          v-for="year in availableYears"
           :class="{'px-1': true, 'active': year==selectedYear}"
           href="#"
           @click="selectYear(year)"
@@ -34,7 +35,7 @@
               <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
                 <label>
                   <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)" />
-                  {{ format(holiday.date) }} 
+                  {{ format(holiday.date) }}
                   (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
                 </label>
               </li>
@@ -57,9 +58,11 @@ import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';
 import _uniq from 'lodash.uniq';
 import isWeekend from 'date-fns/is_weekend';
+import CornerBanner from './CornerBanner.vue';
 
 export default {
   name: 'app',
+  components: {CornerBanner},
   data () {
     return {
       availableYears: ['2020', '2021', '2022', '2023'],
@@ -96,7 +99,7 @@ export default {
       this.selected[date] = event.target.checked;
     },
     totalWeekdays(month) {
-      let holidays = month 
+      let holidays = month
         ? this.holidays.holidaysByMonth[month]
         : this.holidays.all;
 
@@ -108,7 +111,7 @@ export default {
       ).length;
     },
     totalWeekends(month) {
-      let holidays = month 
+      let holidays = month
         ? this.holidays.holidaysByMonth[month]
         : this.holidays.all;
 
@@ -152,7 +155,7 @@ export default {
   }
 
   span.total {
-    font-weight: bold;    
+    font-weight: bold;
   }
 }
 
