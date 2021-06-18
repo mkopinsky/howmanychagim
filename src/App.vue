@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="bg-light">
+    <CornerBanner url="https://github.com/mkopinsky/howmanychagim"/>
     <div class="top">
       <h1>How many Chagim?</h1>
     </div>
@@ -13,7 +14,7 @@
             <label class="col-sm-5 col-form-label">Select a Year</label>
             <div class="col-sm-7 btn-group-toggle btn-group" data-toggle="buttons">
               <label v-for="year in availableYears" class="btn btn-outline-primary" :class="{active: year==selectedYear}">
-                <input type="radio" :value="year" v-model="selectedYear" />
+                <input type="radio" :value="year" v-model="selectedYear"/>
                 {{ year }}
               </label>
             </div>
@@ -22,7 +23,7 @@
             <label class="col-sm-5 col-form-label">Choose your Work Week</label>
             <div class="col-sm-7 btn-group-toggle btn-group" data-toggle="buttons">
               <label v-for="day, i in weekdays" class="btn btn-outline-primary" @click="toggleDay(day)" :class="{active: settings.weekdays[day]}">
-                {{day[0]}}
+                {{ day[0] }}
               </label>
             </div>
           </div>
@@ -31,7 +32,7 @@
             <label class="col-sm-5 col-form-label">What will you take off?</label>
             <div class="col-sm-7">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox"  id="defaultCheck1" checked>
+                <input class="form-check-input" type="checkbox" id="defaultCheck1" checked>
                 <label class="form-check-label" for="defaultCheck1">
                   Yom tov
                 </label>
@@ -66,7 +67,7 @@
 
         </div>
         <div class="card-footer mb-0">
-          <h4>Total: <span class="badge badge-primary">{{totalWeekdays()}}</span> work days</h4>
+          <h4>Total: <span class="badge badge-primary">{{ totalWeekdays() }}</span> work days</h4>
           <ul>
             <li v-for="holidays, month in selectedHolidaysByMonth" v-if="holidays.length > 0">
               <span class="badge badge-primary">{{ totalWeekdays(month) }}</span>
@@ -88,7 +89,7 @@
         <h2>Select a year</h2>
         <div class="btn-group-toggle btn-group" data-toggle="buttons">
           <label v-for="year in availableYears" class="btn btn-outline-primary" :class="{active: year==selectedYear}">
-            <input type="radio" :value="year" v-model="selectedYear" />
+            <input type="radio" :value="year" v-model="selectedYear"/>
             {{ year }}
           </label>
         </div>
@@ -97,9 +98,9 @@
     </div>
     <div class="row col-lg-9 offset-lg-2 text-center">
       <calendar
-        :year="selectedYear"
-        :selectedDays="selected"
-        :getClassesForDate="getClassesForDate"
+          :year="selectedYear"
+          :selectedDays="selected"
+          :getClassesForDate="getClassesForDate"
       />
     </div>
     <div class="row d-none">
@@ -107,20 +108,20 @@
       <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.holidaysByMonth">
         <div class="card">
           <h5 class="card-header">
-            {{month}}
+            {{ month }}
             <span class="float-right">
               <span class="badge badge-warning">{{ totalWeekdays(month) }}</span>
               <span class="badge badge-secondary">{{ totalWeekends(month) }}</span>
             </span>
           </h5>
           <div class="card-body">
-            <p v-if="holidays.length == 0">No chagim in {{month}}!</p>
+            <p v-if="holidays.length == 0">No chagim in {{ month }}!</p>
             <ul class="days">
               <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
                 <label>
-                  <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date)" />
+                  <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)"/>
                   {{ format(holiday.date) }}
-                  (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{holiday.title}}</a>)
+                  (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{ holiday.title }}</a>)
                 </label>
               </li>
             </ul>
@@ -145,15 +146,17 @@ import isWeekend from 'date-fns/is_weekend';
 import moment from 'moment';
 
 import calendar from './calendar/index.vue';
+import CornerBanner from './CornerBanner.vue';
 
 export default {
   name: 'app',
-  data () {
+  data() {
+    const currentYear = new Date().getFullYear();
     return {
-      availableYears: ['2018', '2019', '2020'],
+      availableYears: [currentYear - 1, currentYear, currentYear + 1, currentYear + 2],
+      selectedYear: currentYear,
       weekdays: moment.weekdays(),
       settings: {
-        year: 2018,
         weekdays: {
           'Sunday': false,
           'Monday': true,
@@ -164,7 +167,6 @@ export default {
           'Saturday': false,
         }
       },
-      selectedYear: '2018',
       holidays: {
         all: [],
         holidaysByMonth: {}
@@ -173,17 +175,18 @@ export default {
     };
   },
   components: {
-      calendar
+    calendar,
+    CornerBanner,
   },
   mounted() {
-    this.reloadHolidays()
+    this.reloadHolidays();
   },
   computed: {
     selectedHolidaysByMonth() {
       return _mapValues(
-        this.holidays.holidaysByMonth,
+          this.holidays.holidaysByMonth,
           holidays => holidays.filter(holiday => this.selected[holiday.date])
-        );
+      );
     },
 
   },
@@ -218,17 +221,17 @@ export default {
       getHolidays(this.selectedYear).then(holidays => {
         this.holidays = holidays;
         this.selected = _mapValues(
-          _keyby(this.holidays.all, 'date'),
-          // Default to selecting yomtov days
-          holiday => !!holiday.yomtov // && !isWeekend(holiday.date)
+            _keyby(this.holidays.all, 'date'),
+            // Default to selecting yomtov days
+            holiday => !!holiday.yomtov // && !isWeekend(holiday.date)
         );
       });
     },
     format(date) {
-      return format(date, 'ddd MMM Do')
+      return format(date, 'ddd MMM Do');
     },
     formatShort(date) {
-      return format(date, 'ddd Do')
+      return format(date, 'ddd Do');
     },
     selectYear(year) {
       this.selectedYear = year;
@@ -241,31 +244,31 @@ export default {
       this.selected[date] = !this.selected[date];
     },
     totalWeekdays(month) {
-      let holidays = month 
-        ? this.holidays.holidaysByMonth[month]
-        : this.holidays.all;
+      let holidays = month
+          ? this.holidays.holidaysByMonth[month]
+          : this.holidays.all;
 
       return _uniq(
-        holidays
-        .map(holiday => holiday.date)
-        .filter(date => this.selected[date])
-        .filter(date => !isWeekend(date))
+          holidays
+              .map(holiday => holiday.date)
+              .filter(date => this.selected[date])
+              .filter(date => !isWeekend(date))
       ).length;
     },
     totalWeekends(month) {
-      let holidays = month 
-        ? this.holidays.holidaysByMonth[month]
-        : this.holidays.all;
+      let holidays = month
+          ? this.holidays.holidaysByMonth[month]
+          : this.holidays.all;
 
       return _uniq(
-        holidays
-        .map(holiday => holiday.date)
-        .filter(date => this.selected[date])
-        .filter(isWeekend)
+          holidays
+              .map(holiday => holiday.date)
+              .filter(date => this.selected[date])
+              .filter(isWeekend)
       ).length;
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -281,8 +284,10 @@ $danger: #ff4136;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   padding: 60px 30px 20px;
+
   .top {
     text-align: center;
+
     .year-selector .active {
       text-decoration: underline dotted;
       color: black;
@@ -296,6 +301,7 @@ $danger: #ff4136;
   ul.days {
     li {
       display: block;
+
       &.yt {
         font-weight: bold;
       }
@@ -303,7 +309,7 @@ $danger: #ff4136;
   }
 
   span.total {
-    font-weight: bold;    
+    font-weight: bold;
   }
 
   .day-cell {
@@ -317,11 +323,14 @@ $danger: #ff4136;
         color: white;
       }
     }
+
     &.weekend, &.gray {
       opacity: 0.7;
     }
+
     &.holiday {
       border: 1px solid $warning;
+
       &.active:hover,
       &.active {
         background: $warning;
