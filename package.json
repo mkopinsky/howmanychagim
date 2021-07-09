@@ -16,6 +16,7 @@
     "lodash.keyby": "^4.6.0",
     "lodash.mapvalues": "^4.6.0",
     "lodash.uniq": "^4.5.0",
+    "moment": "^2.22.2",
     "popper.js": "^1.12.9",
     "vue": "^2.5.3"
   },
