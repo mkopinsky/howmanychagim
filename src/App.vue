@@ -25,7 +25,7 @@
           <h5 class="card-header">
             {{ month }}
             <span class="float-right">
-              <span class="badge badge-warning">{{ totalWeekdays(month) }}</span>
+              <span class="badge badge-warning mr-1">{{ totalWeekdays(month) }}</span>
               <span class="badge badge-secondary">{{ totalWeekends(month) }}</span>
             </span>
           </h5>
@@ -35,7 +35,7 @@
               <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
                 <label>
                   <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)"/>
-                  {{ format(holiday.date) }}
+                  {{ format(holiday.jsDate) }}
                   (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{ holiday.title }}</a>)
                 </label>
               </li>
@@ -57,7 +57,6 @@ import format from 'date-fns/format';
 import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';
 import _uniq from 'lodash.uniq';
-import isWeekend from 'date-fns/is_weekend';
 import CornerBanner from './CornerBanner.vue';
 
 export default {
@@ -90,7 +89,7 @@ export default {
       });
     },
     format(date) {
-      return format(date, 'ddd MMM Do');
+      return format(date, 'ccc MMM do');
     },
     selectYear(year) {
       this.selectedYear = year;
@@ -106,9 +105,7 @@ export default {
 
       return _uniq(
           holidays
-              .map(holiday => holiday.date)
-              .filter(date => this.selected[date])
-              .filter(date => !isWeekend(date))
+              .filter(holiday => !holiday.isWeekend && this.selected[holiday.date])
       ).length;
     },
     totalWeekends(month) {
@@ -118,9 +115,7 @@ export default {
 
       return _uniq(
           holidays
-              .map(holiday => holiday.date)
-              .filter(date => this.selected[date])
-              .filter(isWeekend)
+              .filter(holiday => holiday.isWeekend && this.selected[holiday.date])
       ).length;
     }
   }
