@@ -11,7 +11,7 @@
             @click="selectYear(year)"
         >{{ year }}</a>
       </h3>
-      <div class="grand-totals mb-3">
+      <div class="mb-3">
         <h4>
           Total: <span class="badge text-bg-warning">{{ totalWeekdays() }}</span> work days,
           <span class="badge text-bg-secondary">{{ totalWeekends() }}</span> weekends
@@ -19,10 +19,9 @@
       </div>
     </div>
     <div class="row">
-
       <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.holidaysByMonth">
         <div class="card">
-          <h5 class="card-header">
+          <h5 class="card-header month-header">
             {{ month }}
             <span class="float-end">
               <span class="badge text-bg-warning me-1">{{ totalWeekdays(month) }}</span>
