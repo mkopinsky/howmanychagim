@@ -13,8 +13,8 @@
       </h3>
       <div class="grand-totals mb-3">
         <h4>
-          Total: <span class="badge badge-warning">{{ totalWeekdays() }}</span> work days,
-          <span class="badge badge-secondary">{{ totalWeekends() }}</span> weekends
+          Total: <span class="badge text-bg-warning">{{ totalWeekdays() }}</span> work days,
+          <span class="badge text-bg-secondary">{{ totalWeekends() }}</span> weekends
         </h4>
       </div>
     </div>
@@ -24,9 +24,9 @@
         <div class="card">
           <h5 class="card-header">
             {{ month }}
-            <span class="float-right">
-              <span class="badge badge-warning mr-1">{{ totalWeekdays(month) }}</span>
-              <span class="badge badge-secondary">{{ totalWeekends(month) }}</span>
+            <span class="float-end">
+              <span class="badge text-bg-warning me-1">{{ totalWeekdays(month) }}</span>
+              <span class="badge text-bg-secondary">{{ totalWeekends(month) }}</span>
             </span>
           </h5>
           <div class="card-body">
