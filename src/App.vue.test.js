@@ -5,10 +5,11 @@ import { mount } from '@vue/test-utils';
 import App from './App.vue';
 
 vi.mock('./holidays', () => ({
-  default: vi.fn()
+  getHolidays: vi.fn(),
+  downloadYearFromHebcal: vi.fn()
 }));
 
-import { default as getHolidays } from './holidays';
+import { downloadYearFromHebcal, getHolidays } from './holidays';
 
 const mockHolidays = {
   all: [
@@ -82,7 +83,7 @@ describe('App.vue', () => {
     
     await extraWrapper.vm.$nextTick();
 
-    expect(getHolidays).toHaveBeenCalledWith(new Date().getFullYear());
+    expect(getHolidays).toHaveBeenCalledWith(new Date().getFullYear(), downloadYearFromHebcal, global.localStorage);
     extraWrapper.unmount();    
   });
 
@@ -94,7 +95,7 @@ describe('App.vue', () => {
     const nextYearLink = yearLinks.find(a => a.text() == nextYear.toString());
     await nextYearLink.trigger('click');
 
-    expect(getHolidays).toHaveBeenCalledWith(nextYear);
+    expect(getHolidays).toHaveBeenCalledWith(nextYear, downloadYearFromHebcal, global.localStorage);
   });
 
   it('toggles holiday selection when checkbox is clicked', async () => {

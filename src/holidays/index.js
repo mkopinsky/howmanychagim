@@ -33,7 +33,7 @@ export const sortByMonth = (holidays) => {
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
-  months.forEach(function(month, index) {
+  months.forEach(function (month, index) {
     holidaysByMonth[month] = holidays.filter(holiday => holiday.month == index);
   });
 
@@ -42,19 +42,26 @@ export const sortByMonth = (holidays) => {
 
 export const downloadYearFromHebcal = async (year) => {
   const url = `https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=${year}&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on`;
-  
+
   const response = await fetch(url);
   const data = await response.json();
 
   return data;
 }
 
-export default function(year, fnDownload) {
-  return fnDownload(year)
-    .then(data => {
-      return {
-        all: transformHolidays(data),
-        holidaysByMonth: sortByMonth(transformHolidays(data))    
-      };
-    });
+export const getHolidays = async (year, fnDownload, cache) => {
+  const cacheKey = `holidays-${year}`;
+  const cachedData = cache.getItem(cacheKey);
+  if (cachedData) {
+    return JSON.parse(cachedData);
+  }
+
+  const data = await fnDownload(year);
+  const transformed = {
+    all: transformHolidays(data),
+    holidaysByMonth: sortByMonth(transformHolidays(data))
+  };
+  cache.setItem(cacheKey, JSON.stringify(transformed));
+
+  return transformed;
 };

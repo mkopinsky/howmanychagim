@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { default as getHolidays, downloadYearFromHebcal, transformHolidays, sortByMonth } from './index';
+import { getHolidays, downloadYearFromHebcal, transformHolidays, sortByMonth } from './index';
 
 describe('holidays', () => {
   describe('transformHolidays', () => {
@@ -91,14 +91,13 @@ describe('holidays', () => {
     });
   });
 
-  describe('default (getHolidays)', () => {
+  describe('getHolidays', () => {
     let mockFnDownload;
-    let mockLocalStorage;
+    let mockCache;
 
     beforeEach(() => {
       mockFnDownload = vi.fn((key) => {});
-
-      mockLocalStorage = (() => {
+      mockCache = (() => {
         let store = {};
         return {
           getItem: vi.fn((key) => store[key] || null),
@@ -106,13 +105,6 @@ describe('holidays', () => {
           clear: () => { store = {}; }
         };
       })();
-      Object.defineProperty(global, 'localStorage', {
-        value: mockLocalStorage,
-        configurable: true
-      });
-    });
-
-    afterEach(() => {
     });
 
     it('fetches and organizes holidays from API if not cached', async () => {
@@ -123,8 +115,9 @@ describe('holidays', () => {
         ]
       };
       mockFnDownload.mockResolvedValueOnce(testYears);
+      mockCache.getItem.mockReturnValueOnce(null);
 
-      const data = await getHolidays(2025, mockFnDownload);
+      const data = await getHolidays(2025, mockFnDownload, mockCache);
 
       expect(mockFnDownload).toHaveBeenCalled();
       expect(data.all.length).toBe(1);
@@ -133,10 +126,34 @@ describe('holidays', () => {
       expect(data.holidaysByMonth['April'].length).toBe(1);
     });
 
+    it('caches the fetched holidays', async () => {
+      const testYears = {
+        items: [
+          { category: 'hebdate', date: '2025-04-23', hebrew: '15 Nisan 5785', title: '15 Nisan' },
+          { category: 'holiday', date: '2025-04-23', title: 'Pesach I' }
+        ]
+      };
+      mockFnDownload.mockResolvedValueOnce(testYears);
+
+      await getHolidays(2025, mockFnDownload, mockCache);
+
+      expect(mockCache.setItem).toHaveBeenCalledWith('holidays-2025', expect.stringContaining('Pesach I'));
+    });
+
+    it('returns cached holidays if available', async () => {
+      const cachedData = {};
+      mockCache.getItem.mockReturnValueOnce(JSON.stringify(cachedData));
+
+      const data = await getHolidays(2025, mockFnDownload, mockCache);
+
+      expect(mockFnDownload).not.toHaveBeenCalled();
+      expect(data).toStrictEqual(cachedData);
+    });
+
     it('throws and logs error if fetch fails', async () => {
       mockFnDownload.mockRejectedValueOnce(new Error('Network error'));
 
-      await expect(getHolidays(2026, mockFnDownload)).rejects.toThrow('Network error');
+      await expect(getHolidays(2026, mockFnDownload, mockCache)).rejects.toThrow('Network error');
     });
   });
 });
