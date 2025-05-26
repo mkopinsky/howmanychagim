@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { default as getHolidays, transformHolidays, sortByMonth } from './index';
+import { default as getHolidays, downloadYearFromHebcal, transformHolidays, sortByMonth } from './index';
 
 describe('holidays', () => {
   describe('transformHolidays', () => {
@@ -67,12 +67,36 @@ describe('holidays', () => {
 
   describe('downloadYearFromHebcal', () => {
     let mockFnFetch;
-    let mockLocalStorage;
 
     beforeEach(() => {
       mockFnFetch = vi.spyOn(global, 'fetch').mockResolvedValue({
         json: () => Promise.resolve({ items: [] })
       });
+    });
+
+    afterEach(() => {
+      mockFnFetch.mockRestore();
+    });
+
+    it('fetches data for a given year from Hebcal', async () => {
+      const mockResponse = {};
+      mockFnFetch.mockResolvedValue({
+        json: () => Promise.resolve(mockResponse)
+      });
+
+      const data = await downloadYearFromHebcal(2025);
+
+      expect(mockFnFetch).toHaveBeenCalledWith(expect.stringMatching(/^https:\/\/www\.hebcal\.com\/hebcal.*year=2025.*/));
+      expect(data).toStrictEqual(mockResponse);
+    });
+  });
+
+  describe('default (getHolidays)', () => {
+    let mockFnDownload;
+    let mockLocalStorage;
+
+    beforeEach(() => {
+      mockFnDownload = vi.fn((key) => {});
 
       mockLocalStorage = (() => {
         let store = {};
@@ -89,7 +113,6 @@ describe('holidays', () => {
     });
 
     afterEach(() => {
-      mockFnFetch.mockRestore();
     });
 
     it('fetches and organizes holidays from API if not cached', async () => {
@@ -99,13 +122,11 @@ describe('holidays', () => {
           { category: 'holiday', date: '2025-04-23', title: 'Pesach I' }
         ]
       };
-      mockFnFetch.mockResolvedValueOnce({
-        json: () => Promise.resolve(testYears)
-      });
+      mockFnDownload.mockResolvedValueOnce(testYears);
 
-      const data = await getHolidays(2025);
+      const data = await getHolidays(2025, mockFnDownload);
 
-      expect(mockFnFetch).toHaveBeenCalled();
+      expect(mockFnDownload).toHaveBeenCalled();
       expect(data.all.length).toBe(1);
       expect(data.all[0].title).toBe('Pesach I');
       expect(data.all[0].hebrew_date).toBe('15 Nisan 5785');
@@ -113,9 +134,9 @@ describe('holidays', () => {
     });
 
     it('throws and logs error if fetch fails', async () => {
-      mockFnFetch.mockRejectedValueOnce(new Error('Network error'));
+      mockFnDownload.mockRejectedValueOnce(new Error('Network error'));
 
-      await expect(getHolidays(2026)).rejects.toThrow('Network error');
+      await expect(getHolidays(2026, mockFnDownload)).rejects.toThrow('Network error');
     });
   });
 });

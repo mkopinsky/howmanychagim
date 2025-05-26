@@ -40,10 +40,17 @@ export const sortByMonth = (holidays) => {
   return holidaysByMonth;
 };
 
-export default function(year) {
-  var url = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year='+year+'&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on';
-  return fetch(url)
-    .then(response => response.json())
+export const downloadYearFromHebcal = async (year) => {
+  const url = `https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=${year}&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on`;
+  
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+}
+
+export default function(year, fnDownload) {
+  return fnDownload(year)
     .then(data => {
       return {
         all: transformHolidays(data),
