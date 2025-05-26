@@ -8,7 +8,7 @@ vi.mock('./holidays', () => ({
   default: vi.fn()
 }));
 
-import getHolidays from './holidays';
+import { default as getHolidays } from './holidays';
 
 const mockHolidays = {
   all: [

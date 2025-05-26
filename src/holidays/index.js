@@ -1,13 +1,7 @@
-
-// TODO (maybe): fetch data via API rather than stored on disk
-// https://www.hebcal.com/home/195/jewish-calendar-rest-api
-// http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on
 import { isWeekend } from 'date-fns';
 import parse from 'date-fns/parse';
 
-// var  data = fetch('http://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year=now&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on');
-
-function organize(data) {
+export const transformHolidays = (data) => {
   let refDate = new Date(2025, 0, 1);
   let hebdates = data
     .items
@@ -31,8 +25,9 @@ function organize(data) {
     });
 
   return holidays;
-}
-function sortByMonth(holidays) {
+};
+
+export const sortByMonth = (holidays) => {
   let holidaysByMonth = {};
   let months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -43,8 +38,7 @@ function sortByMonth(holidays) {
   });
 
   return holidaysByMonth;
-}
-
+};
 
 export default function(year) {
   var url = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=off&year='+year+'&month=x&ss=off&mf=on&c=off&geo=off&m=0&s=off&D=on';
@@ -52,8 +46,8 @@ export default function(year) {
     .then(response => response.json())
     .then(data => {
       return {
-        all: organize(data),
-        holidaysByMonth: sortByMonth(organize(data))    
+        all: transformHolidays(data),
+        holidaysByMonth: sortByMonth(transformHolidays(data))    
       };
     });
 };

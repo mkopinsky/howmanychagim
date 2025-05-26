@@ -51,7 +51,7 @@
 
 <script>
 
-import getHolidays from './holidays';
+import { default as getHolidays } from './holidays';
 import format from 'date-fns/format';
 import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';

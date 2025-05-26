@@ -1,7 +1,70 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import downloadYearFromHebcal from './index';
+import { default as getHolidays, transformHolidays, sortByMonth } from './index';
 
 describe('holidays', () => {
+  describe('transformHolidays', () => {
+    it('adds hebrew date and weekend data to holiday entries', () => {
+      const date = new Date(2025, 3, 23);
+      const strdate = date.toISOString().split('T')[0];
+      const hebdateEntry = { category: 'hebdate', date: strdate, hebrew: '15 Nisan 5785', title: '15 Nisan' };
+      const holidayEntry = { category: 'holiday', date: strdate, title: 'Pesach I' };
+      const data = {
+        items: [
+          hebdateEntry,
+          holidayEntry
+        ]
+      };
+
+      const transformed = transformHolidays(data);
+
+      expect(transformed.length).toBe(1);
+      expect(transformed[0].title).toBe(holidayEntry.title);
+      expect(transformed[0].hebrew_date).toBe(hebdateEntry.hebrew);
+      expect(transformed[0].hebrew_date_title).toBe(hebdateEntry.title);
+      expect(transformed[0].jsDate).toEqual(date);
+      expect(transformed[0].month).toBe(date.getMonth());
+      expect(transformed[0].isWeekend).toBe(false);
+    });
+
+    it('filters out non-holiday items', () => {
+      const data = {
+        items: [
+          { category: 'hebdate', date: '2025-04-23', hebrew: '15 Nisan 5785', title: '15 Nisan' },
+          { category: 'holiday', date: '2025-04-23', title: 'Pesach I' },
+          { category: 'other', date: '2025-04-24', title: 'Some Other Event' }
+        ]
+      };
+
+      const transformed = transformHolidays(data);
+
+      expect(transformed.length).toBe(1);
+      expect(transformed[0].title).toBe('Pesach I');
+    });
+  });
+
+  describe('sortByMonth', () => {
+    it('groups holidays by month', () => {
+      const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+      const holidays = [
+        { title: 'Pesach I', month: 3 },
+        { title: 'Yom Kippur', month: 8 },
+        { title: 'Rosh Hashanah', month: 8 },
+        { title: 'Sukkot', month: 9 }
+      ];
+
+      const grouped = sortByMonth(holidays);
+
+      expect(Object.keys(grouped).length).toBe(12);
+      months.forEach((name, ix) => {
+        expect(grouped[name]).toBeDefined();
+        expect(grouped[name].length).toBe(holidays.filter(h => h.month === ix).length);
+      });
+    });
+  });
+
   describe('downloadYearFromHebcal', () => {
     let mockFnFetch;
     let mockLocalStorage;
@@ -40,7 +103,7 @@ describe('holidays', () => {
         json: () => Promise.resolve(testYears)
       });
 
-      const data = await downloadYearFromHebcal(2025);
+      const data = await getHolidays(2025);
 
       expect(mockFnFetch).toHaveBeenCalled();
       expect(data.all.length).toBe(1);
@@ -52,7 +115,7 @@ describe('holidays', () => {
     it('throws and logs error if fetch fails', async () => {
       mockFnFetch.mockRejectedValueOnce(new Error('Network error'));
 
-      await expect(downloadYearFromHebcal(2026)).rejects.toThrow('Network error');
+      await expect(getHolidays(2026)).rejects.toThrow('Network error');
     });
   });
 });
