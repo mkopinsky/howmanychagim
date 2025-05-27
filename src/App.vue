@@ -51,7 +51,8 @@
 
 <script>
 
-import { getHolidays, downloadYearFromHebcal } from './holidays';
+import { getHolidays } from './holidays/index';
+import { getYear } from './holidays/hebcalClient';
 import format from 'date-fns/format';
 import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';
@@ -78,7 +79,7 @@ export default {
   },
   methods: {
     reloadHolidays() {
-      getHolidays(this.selectedYear, downloadYearFromHebcal, localStorage).then(holidays => {
+      getHolidays(this.selectedYear, getYear, localStorage).then(holidays => {
         this.holidays = holidays;
         this.selected = _mapValues(
             _keyby(this.holidays.all, 'date'),

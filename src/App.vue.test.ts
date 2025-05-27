@@ -4,55 +4,24 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import App from './App.vue';
 
-vi.mock('./holidays', () => ({
-  getHolidays: vi.fn(),
-  downloadYearFromHebcal: vi.fn()
+vi.mock('./holidays/index', () => ({
+  getHolidays: vi.fn()
 }));
 
-import { downloadYearFromHebcal, getHolidays } from './holidays';
+vi.mock('./holidays/hebcalClient', () => ({
+  getYear: vi.fn()
+}));
 
+import { getHolidays } from './holidays/index';
+import { getYear } from './holidays/hebcalClient';
+import { createMockHmcHoliday } from './holidays/index.testhelper';
+
+const pesachI = createMockHmcHoliday({ subcat: 'major', date: new Date('2025-04-23'), title: 'Pesach I', isWeekend: false, isYomTov: true });
+const shabbatCholHamoed = createMockHmcHoliday({ subcat: 'minor', date: new Date('2025-04-26'), title: 'Shabbat Chol Hamoed', isWeekend: true, isYomTov: false });
 const mockHolidays = {
-  all: [
-    {
-      date: '2025-04-23',
-      jsDate: new Date('2025-04-23'),
-      title: 'Pesach I',
-      yomtov: true,
-      isWeekend: false,
-      month: 3,
-      link: 'https://example.com/pesach'
-    },
-    {
-      date: '2025-04-26',
-      jsDate: new Date('2025-04-26'),
-      title: 'Shabbat Chol Hamoed',
-      yomtov: false,
-      isWeekend: true,
-      month: 3,
-      link: 'https://example.com/shabbat'
-    }
-  ],
+  all: [pesachI, shabbatCholHamoed],
   holidaysByMonth: {
-    April: [
-      {
-        date: '2025-04-23',
-        jsDate: new Date('2025-04-23'),
-        title: 'Pesach I',
-        yomtov: true,
-        isWeekend: false,
-        month: 3,
-        link: 'https://example.com/pesach'
-      },
-      {
-        date: '2025-04-26',
-        jsDate: new Date('2025-04-26'),
-        title: 'Shabbat Chol Hamoed',
-        yomtov: false,
-        isWeekend: true,
-        month: 3,
-        link: 'https://example.com/shabbat'
-      }
-    ]
+    April: [pesachI, shabbatCholHamoed]
   }
 };
 
@@ -83,7 +52,7 @@ describe('App.vue', () => {
     
     await extraWrapper.vm.$nextTick();
 
-    expect(getHolidays).toHaveBeenCalledWith(new Date().getFullYear(), downloadYearFromHebcal, global.localStorage);
+    expect(getHolidays).toHaveBeenCalledWith(new Date().getFullYear(), getYear, global.localStorage);
     extraWrapper.unmount();    
   });
 
@@ -95,7 +64,7 @@ describe('App.vue', () => {
     const nextYearLink = yearLinks.find(a => a.text() == nextYear.toString());
     await nextYearLink.trigger('click');
 
-    expect(getHolidays).toHaveBeenCalledWith(nextYear, downloadYearFromHebcal, global.localStorage);
+    expect(getHolidays).toHaveBeenCalledWith(nextYear, getYear, global.localStorage);
   });
 
   it('toggles holiday selection when checkbox is clicked', async () => {

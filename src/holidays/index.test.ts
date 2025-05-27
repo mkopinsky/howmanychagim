@@ -1,44 +1,39 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { getHolidays, downloadYearFromHebcal, transformHolidays, sortByMonth } from './index';
+import { getHolidays, transformHolidays, sortByMonth } from './index';
+import { createMockJcItem, createMockResponse } from './hebcalClient.testhelper';
 
 describe('holidays', () => {
   describe('transformHolidays', () => {
     it('adds hebrew date and weekend data to holiday entries', () => {
       const date = new Date(2025, 3, 23);
-      const strdate = date.toISOString().split('T')[0];
-      const hebdateEntry = { category: 'hebdate', date: strdate, hebrew: '15 Nisan 5785', title: '15 Nisan' };
-      const holidayEntry = { category: 'holiday', date: strdate, title: 'Pesach I' };
-      const data = {
-        items: [
-          hebdateEntry,
-          holidayEntry
-        ]
-      };
+      const holidayEntry = createMockJcItem({ category: 'holiday', date: date });
+      const correspondingHebdate = createMockJcItem({ category: 'hebdate', date: date });
+      const mockJcResponse = createMockResponse([correspondingHebdate, holidayEntry]);
 
-      const transformed = transformHolidays(data);
+      const transformed = transformHolidays(mockJcResponse);
 
       expect(transformed.length).toBe(1);
       expect(transformed[0].title).toBe(holidayEntry.title);
-      expect(transformed[0].hebrew_date).toBe(hebdateEntry.hebrew);
-      expect(transformed[0].hebrew_date_title).toBe(hebdateEntry.title);
+      expect(transformed[0].hebrew_date).toBe(correspondingHebdate.hebrew);
+      expect(transformed[0].hebrew_date_title).toBe(correspondingHebdate.title);
       expect(transformed[0].jsDate).toEqual(date);
       expect(transformed[0].month).toBe(date.getMonth());
       expect(transformed[0].isWeekend).toBe(false);
     });
 
     it('filters out non-holiday items', () => {
-      const data = {
-        items: [
-          { category: 'hebdate', date: '2025-04-23', hebrew: '15 Nisan 5785', title: '15 Nisan' },
-          { category: 'holiday', date: '2025-04-23', title: 'Pesach I' },
-          { category: 'other', date: '2025-04-24', title: 'Some Other Event' }
-        ]
-      };
+      const mockJcResponse = createMockResponse([
+        createMockJcItem({ category: 'hebdate' }),
+        createMockJcItem({ category: 'roshchodesh' }),
+        createMockJcItem({ category: 'parashat' }),
+        createMockJcItem({ category: 'mevarchim' }),
+        createMockJcItem({ category: 'holiday', title: 'test holiday entry' })
+      ]);
 
-      const transformed = transformHolidays(data);
+      const transformed = transformHolidays(mockJcResponse);
 
       expect(transformed.length).toBe(1);
-      expect(transformed[0].title).toBe('Pesach I');
+      expect(transformed[0].title).toBe('test holiday entry');
     });
   });
 
@@ -65,38 +60,12 @@ describe('holidays', () => {
     });
   });
 
-  describe('downloadYearFromHebcal', () => {
-    let mockFnFetch;
-
-    beforeEach(() => {
-      mockFnFetch = vi.spyOn(global, 'fetch').mockResolvedValue({
-        json: () => Promise.resolve({ items: [] })
-      });
-    });
-
-    afterEach(() => {
-      mockFnFetch.mockRestore();
-    });
-
-    it('fetches data for a given year from Hebcal', async () => {
-      const mockResponse = {};
-      mockFnFetch.mockResolvedValue({
-        json: () => Promise.resolve(mockResponse)
-      });
-
-      const data = await downloadYearFromHebcal(2025);
-
-      expect(mockFnFetch).toHaveBeenCalledWith(expect.stringMatching(/^https:\/\/www\.hebcal\.com\/hebcal.*year=2025.*/));
-      expect(data).toStrictEqual(mockResponse);
-    });
-  });
-
   describe('getHolidays', () => {
     let mockFnDownload;
     let mockCache;
 
     beforeEach(() => {
-      mockFnDownload = vi.fn((key) => {});
+      mockFnDownload = vi.fn((key) => { });
       mockCache = (() => {
         let store = {};
         return {
@@ -108,32 +77,22 @@ describe('holidays', () => {
     });
 
     it('fetches and organizes holidays from API if not cached', async () => {
-      const testYears = {
-        items: [
-          { category: 'hebdate', date: '2025-04-23', hebrew: '15 Nisan 5785', title: '15 Nisan' },
-          { category: 'holiday', date: '2025-04-23', title: 'Pesach I' }
-        ]
-      };
-      mockFnDownload.mockResolvedValueOnce(testYears);
+      const holiday = createMockJcItem({ category: 'holiday', date: new Date(2000, 0, 1) });
+      const correspondingHebdate = createMockJcItem({ category: 'hebdate', date: new Date(2000, 0, 1) });
+      mockFnDownload.mockResolvedValueOnce(createMockResponse([holiday, correspondingHebdate]));
       mockCache.getItem.mockReturnValueOnce(null);
 
       const data = await getHolidays(2025, mockFnDownload, mockCache);
 
       expect(mockFnDownload).toHaveBeenCalled();
       expect(data.all.length).toBe(1);
-      expect(data.all[0].title).toBe('Pesach I');
-      expect(data.all[0].hebrew_date).toBe('15 Nisan 5785');
-      expect(data.holidaysByMonth['April'].length).toBe(1);
+      expect(data.all[0].title).toBe(holiday.title);
+      expect(data.all[0].hebrew_date).toBe(correspondingHebdate.hebrew);
     });
 
     it('caches the fetched holidays', async () => {
-      const testYears = {
-        items: [
-          { category: 'hebdate', date: '2025-04-23', hebrew: '15 Nisan 5785', title: '15 Nisan' },
-          { category: 'holiday', date: '2025-04-23', title: 'Pesach I' }
-        ]
-      };
-      mockFnDownload.mockResolvedValueOnce(testYears);
+      const mockJcResponse = createMockResponse([createMockJcItem({ category: 'holiday', title: 'Pesach I' })]);
+      mockFnDownload.mockResolvedValueOnce(mockJcResponse);
 
       await getHolidays(2025, mockFnDownload, mockCache);
 
