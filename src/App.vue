@@ -105,6 +105,7 @@ export default {
       return _uniq(
           holidays
               .filter(holiday => !holiday.isWeekend && this.selected[holiday.date])
+              .map(holiday => holiday.date)
       ).length;
     },
     totalWeekends(month) {
@@ -115,6 +116,7 @@ export default {
       return _uniq(
           holidays
               .filter(holiday => holiday.isWeekend && this.selected[holiday.date])
+              .map(holiday => holiday.date)
       ).length;
     }
   }

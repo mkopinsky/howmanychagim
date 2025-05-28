@@ -79,11 +79,11 @@ describe('App.vue', () => {
 
   it('calls getHolidays with the selected year on mount', async () => {
     const extraWrapper = mount(App);
-    
+
     await extraWrapper.vm.$nextTick();
 
     expect(getHolidays).toHaveBeenCalledWith(new Date().getFullYear());
-    extraWrapper.unmount();    
+    extraWrapper.unmount();
   });
 
   it('updates holidays when a different year is selected', async () => {
@@ -106,6 +106,30 @@ describe('App.vue', () => {
   });
 
   it('shows correct total weekdays and weekends', async () => {
+    wrapper.vm.selected[mockHolidays.all[0].date] = true;
+    wrapper.vm.selected[mockHolidays.all[1].date] = true;
+
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.find('.year-selector ~ div .badge.text-bg-warning').text()).toBe('1');
+    expect(wrapper.find('.year-selector ~ div .badge.text-bg-secondary').text()).toBe('1');
+    expect(wrapper.find('.month-header .badge.text-bg-warning').text()).toBe('1');
+    expect(wrapper.find('.month-header .badge.text-bg-secondary').text()).toBe('1');
+  });
+
+  it('does not double count different holidays with the same date', async () => {
+    const cm2 = {
+      ...mockHolidays.all[1],
+      title: '2nd Day of Chol Hamoed',
+    };
+    const extraPesachDef = {
+      ...mockHolidays.all[0],
+      title: 'Pesach I - Extra Definition'
+    };
+    getHolidays.mockResolvedValueOnce({ all: [...mockHolidays.all, cm2, extraPesachDef], holidaysByMonth: { April: [...mockHolidays.holidaysByMonth.April, cm2, extraPesachDef] } });
+    wrapper.unmount();
+    wrapper = mount(App);
+    await wrapper.vm.$nextTick();
     wrapper.vm.selected[mockHolidays.all[0].date] = true;
     wrapper.vm.selected[mockHolidays.all[1].date] = true;
 
