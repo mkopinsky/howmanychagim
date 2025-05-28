@@ -30,7 +30,7 @@
           </h5>
           <div class="card-body">
             <p v-if="holidays.length == 0">No chagim in {{ month }}!</p>
-            <ul class="days">
+            <ul class="days list-unstyled">
               <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
                 <label>
                   <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)"/>
@@ -161,10 +161,5 @@ export default {
 
 h1, h2 {
   font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
 }
 </style>
