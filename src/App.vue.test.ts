@@ -4,32 +4,15 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import App from './App.vue';
 
-vi.mock('./holidays/index', () => ({
-  getHolidays: vi.fn()
-}));
-
-vi.mock('./holidays/hebcalClient', () => ({
-  getYear: vi.fn()
-}));
-
-import { getHolidays } from './holidays/index';
-import { getYear } from './holidays/hebcalClient';
-import { createMockHmcHoliday } from './holidays/index.testhelper';
-
-const pesachI = createMockHmcHoliday({ subcat: 'major', date: new Date('2025-04-23'), title: 'Pesach I', isWeekend: false, isYomTov: true });
-const shabbatCholHamoed = createMockHmcHoliday({ subcat: 'minor', date: new Date('2025-04-26'), title: 'Shabbat Chol Hamoed', isWeekend: true, isYomTov: false });
-const mockHolidays = {
-  all: [pesachI, shabbatCholHamoed],
-  holidaysByMonth: {
-    April: [pesachI, shabbatCholHamoed]
-  }
-};
+import { useHmcState } from './useHmcState.ts';
+const hmcState = useHmcState();
 
 describe('App.vue', () => {
   let wrapper;
+  let selectedYearSpy;
 
   beforeEach(async () => {
-    getHolidays.mockResolvedValue(mockHolidays);
+    selectedYearSpy = vi.spyOn(hmcState.selectedYear, 'value', 'set');
 
     wrapper = mount(App);
     await wrapper.vm.$nextTick();
@@ -37,6 +20,7 @@ describe('App.vue', () => {
 
   afterEach(() => {
     wrapper.unmount();
+    vi.clearAllMocks();
   });
 
   it('renders the title and year selector', async () => {
@@ -47,43 +31,32 @@ describe('App.vue', () => {
     expect(wrapper.html()).toContain('Total:');
   });
 
-  it('calls getHolidays with the selected year on mount', async () => {
+  it('sets hmc state selected year to current year on mount', async () => {
     const extraWrapper = mount(App);
-    
+
     await extraWrapper.vm.$nextTick();
 
-    expect(getHolidays).toHaveBeenCalledWith(new Date().getFullYear(), getYear, global.localStorage);
-    extraWrapper.unmount();    
+    expect(selectedYearSpy).toHaveBeenCalledWith(new Date().getFullYear());
+    extraWrapper.unmount();
   });
 
-  it('updates holidays when a different year is selected', async () => {
-    getHolidays.mockResolvedValueOnce(mockHolidays);
-
+  it('sets hmc state when a different year is selected', async () => {
     const nextYear = new Date().getFullYear() + 1;
     const yearLinks = wrapper.findAll('.year-selector a');
     const nextYearLink = yearLinks.find(a => a.text() == nextYear.toString());
+
     await nextYearLink.trigger('click');
 
-    expect(getHolidays).toHaveBeenCalledWith(nextYear, getYear, global.localStorage);
-  });
-
-  it('toggles holiday selection when checkbox is clicked', async () => {
-    const pesachCheckbox = wrapper.find('input[type="checkbox"]');
-    expect(pesachCheckbox.element.checked).toBe(true);
-    await pesachCheckbox.setValue(false);
-
-    expect(wrapper.vm.selected['2025-04-23']).toBe(false);
+    expect(selectedYearSpy).toHaveBeenCalledWith(nextYear);
   });
 
   it('shows correct total weekdays and weekends', async () => {
-    wrapper.vm.selected[mockHolidays.all[0].date] = true;
-    wrapper.vm.selected[mockHolidays.all[1].date] = true;
+    vi.spyOn(hmcState.totalWeekdays, 'value', 'get').mockReturnValue(5);
+    vi.spyOn(hmcState.totalWeekends, 'value', 'get').mockReturnValue(3);
 
-    await wrapper.vm.$nextTick();
+    await wrapper.vm.$forceUpdate();
 
-    expect(wrapper.find('.year-selector ~ div .badge.text-bg-warning').text()).toBe('1');
-    expect(wrapper.find('.year-selector ~ div .badge.text-bg-secondary').text()).toBe('1');
-    expect(wrapper.find('.month-header .badge.text-bg-warning').text()).toBe('1');
-    expect(wrapper.find('.month-header .badge.text-bg-secondary').text()).toBe('1');
+    expect(wrapper.find('.year-selector ~ div .badge.text-bg-warning').text()).toBe('5');
+    expect(wrapper.find('.year-selector ~ div .badge.text-bg-secondary').text()).toBe('3');
   });
 });

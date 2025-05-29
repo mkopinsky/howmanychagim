@@ -8,39 +8,23 @@
             v-for="year in availableYears"
             :class="{'px-1': true, 'active': year===selectedYear}"
             href="#"
-            @click="selectYear(year)"
+            @click.prevent="() => selectedYear = year"
         >{{ year }}</a>
       </h3>
       <div class="mb-3">
         <h4>
-          Total: <span class="badge text-bg-warning">{{ totalWeekdays() }}</span> work days,
-          <span class="badge text-bg-secondary">{{ totalWeekends() }}</span> weekends
+          Total: <span class="badge text-bg-warning">{{ totalWeekdays }}</span> work days,
+          <span class="badge text-bg-secondary">{{ totalWeekends }}</span> weekends
         </h4>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.holidaysByMonth">
-        <div class="card">
-          <h5 class="card-header month-header">
-            {{ month }}
-            <span class="float-end">
-              <span class="badge text-bg-warning me-1">{{ totalWeekdays(month) }}</span>
-              <span class="badge text-bg-secondary">{{ totalWeekends(month) }}</span>
-            </span>
-          </h5>
-          <div class="card-body">
-            <p v-if="holidays.length == 0">No chagim in {{ month }}!</p>
-            <ul class="days">
-              <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
-                <label>
-                  <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)"/>
-                  {{ format(holiday.jsDate) }}
-                  (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{ holiday.title }}</a>)
-                </label>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="col-lg-3 col-sm-6" v-for="(holidaysList, month) in holidays.holidaysByMonth" :key="month">
+        <MonthCard
+          :month="month"
+          :holidays="holidaysList"
+          :onToggle="toggle"
+        />
       </div>
     </div>
     <div id="footer" class="text-center">
@@ -49,77 +33,24 @@
   </div>
 </template>
 
-<script>
-
-import { getHolidays } from './holidays/index';
-import { getYear } from './holidays/hebcalClient';
-import format from 'date-fns/format';
-import _keyby from 'lodash.keyby';
-import _mapValues from 'lodash.mapvalues';
-import _uniq from 'lodash.uniq';
+<script setup>
+import { onMounted } from 'vue';
+import { useHmcState } from './useHmcState';
+import MonthCard from './components/MonthCard.vue';
 import CornerBanner from './CornerBanner.vue';
 
-export default {
-  name: 'app',
-  components: {CornerBanner},
-  data() {
-    const currentYear = new Date().getFullYear();
-    return {
-      availableYears: [currentYear - 1, currentYear, currentYear + 1, currentYear + 2],
-      selectedYear: currentYear,
-      holidays: {
-        all: [],
-        holidaysByMonth: {}
-      },
-      selected: {}
-    };
-  },
-  mounted() {
-    this.reloadHolidays();
-  },
-  methods: {
-    reloadHolidays() {
-      getHolidays(this.selectedYear, getYear, localStorage).then(holidays => {
-        this.holidays = holidays;
-        this.selected = _mapValues(
-            _keyby(this.holidays.all, 'date'),
-            // Default to selecting yomtov days
-            holiday => !!holiday.yomtov
-        );
-      });
-    },
-    format(date) {
-      return format(date, 'ccc MMM do');
-    },
-    selectYear(year) {
-      this.selectedYear = year;
-      this.reloadHolidays();
-    },
-    toggle(date, event) {
-      this.selected[date] = event.target.checked;
-    },
-    totalWeekdays(month) {
-      let holidays = month
-          ? this.holidays.holidaysByMonth[month]
-          : this.holidays.all;
+const {
+  availableYears,
+  holidays,
+  totalWeekdays,
+  totalWeekends,
+  selectedYear,
+  selectedHolidays
+} = useHmcState();
 
-      return _uniq(
-          holidays
-              .filter(holiday => !holiday.isWeekend && this.selected[holiday.date])
-      ).length;
-    },
-    totalWeekends(month) {
-      let holidays = month
-          ? this.holidays.holidaysByMonth[month]
-          : this.holidays.all;
-
-      return _uniq(
-          holidays
-              .filter(holiday => holiday.isWeekend && this.selected[holiday.date])
-      ).length;
-    }
-  }
-};
+onMounted(() => {
+  selectedYear.value = new Date().getFullYear();
+});
 </script>
 
 <style lang="scss">
