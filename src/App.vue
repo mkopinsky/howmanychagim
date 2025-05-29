@@ -11,6 +11,7 @@
             @click.prevent="() => selectedYear = year"
         >{{ year }}</a>
       </h3>
+      <WorkdaysSelector />
       <div class="mb-3">
         <h4>
           Total: <span class="badge text-bg-warning">{{ totalWeekdays }}</span> work days,
@@ -38,14 +39,14 @@ import { onMounted } from 'vue';
 import { useHmcState } from './useHmcState';
 import MonthCard from './components/MonthCard.vue';
 import CornerBanner from './CornerBanner.vue';
+import WorkdaysSelector from './components/WorkdaysSelector.vue';
 
 const {
   availableYears,
   holidays,
   totalWeekdays,
   totalWeekends,
-  selectedYear,
-  selectedHolidays
+  selectedYear
 } = useHmcState();
 
 onMounted(() => {

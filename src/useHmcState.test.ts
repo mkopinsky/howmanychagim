@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createHmcState } from './useHmcState';
 import { nextTick } from 'vue';
 
@@ -36,7 +36,7 @@ describe('createHmcState', () => {
         globalThis.localStorage = mockLocalStorage;
     });
 
-    it('initializes with correct years and empty holidays', () => {
+    it('initializes with correct years, default workdays, and empty holidays', () => {
         const currentYear = new Date().getFullYear();
 
         const state = createHmcState();
@@ -47,6 +47,7 @@ describe('createHmcState', () => {
         expect(Object.keys(state.selectedHolidays.value).length).toBe(0);
         expect(state.totalWeekdays.value).toBe(0);
         expect(state.totalWeekends.value).toBe(0);
+        expect(state.workdays.value).toEqual([1, 2, 3, 4, 5]);
     });
 
     it('loads holidays and sets selectedHolidays when selectedYear changes', async () => {
@@ -62,23 +63,28 @@ describe('createHmcState', () => {
         expect(state.selectedHolidays.value['2025-04-15']).toBe(false);
     });
 
-    it('computes totalWeekdays and totalWeekends correctly', async () => {
+    it('computes totalWeekdays and totalWeekends using workdays state', async () => {
         const state = createHmcState();
         state.selectedYear.value = 2025;
         await nextTick();
-        state.selectedHolidays.value['2025-04-13'] = true;
-        state.selectedHolidays.value['2025-04-14'] = true;
-        state.selectedHolidays.value['2025-04-15'] = true;
-        await nextTick();
-        
-        expect(state.totalWeekdays.value).toBe(2);
-        expect(state.totalWeekends.value).toBe(1);
+        state.selectedHolidays.value['2025-04-13'] = true; // Sunday
+        state.selectedHolidays.value['2025-04-14'] = true; // Monday
+        state.selectedHolidays.value['2025-04-15'] = true; // Tuesday
 
-        state.selectedHolidays.value['2025-04-13'] = false;
-        state.selectedHolidays.value['2025-04-14'] = false;
-        state.selectedHolidays.value['2025-04-15'] = false;
+        await nextTick();
+        expect(state.totalWeekdays.value).toBe(2); // Monday, Tuesday
+        expect(state.totalWeekends.value).toBe(1); // Sunday
+
+        // Change workdays to Sun-Thu (0-4)
+        state.workdays.value = [0,1,2,3,4];
+        await nextTick();
+        expect(state.totalWeekdays.value).toBe(3); // Sunday, Monday, Tuesday
+        expect(state.totalWeekends.value).toBe(0);
+
+        // Change workdays to only Friday (5)
+        state.workdays.value = [5];
         await nextTick();
         expect(state.totalWeekdays.value).toBe(0);
-        expect(state.totalWeekends.value).toBe(0);
+        expect(state.totalWeekends.value).toBe(3);
     });
 });

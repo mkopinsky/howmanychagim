@@ -20,7 +20,8 @@ export interface HmcState {
   totalWeekdays: ComputedRef<number>,
   totalWeekends: ComputedRef<number>,
   selectedYear: Ref<number, number>,
-  selectedHolidays: Ref<HmcSelectedHolidaysDto, HmcSelectedHolidaysDto>
+  selectedHolidays: Ref<HmcSelectedHolidaysDto, HmcSelectedHolidaysDto>,
+  workdays: Ref<number[]>
 }
 
 let instance: HmcState | null = null;
@@ -43,6 +44,8 @@ export const createHmcState = (): HmcState => {
   });
   const selectedHolidays = ref<HmcSelectedHolidaysDto>({});
 
+  const workdays = ref<number[]>([1, 2, 3, 4, 5]);
+
   watch(selectedYear, async () => {
     const data = await getHolidays(selectedYear.value, getYear, localStorage);
     holidays.value.all = data.all;
@@ -55,12 +58,20 @@ export const createHmcState = (): HmcState => {
     ));
   });
 
-  const totalWeekends = computed(() => {
-    return _uniq(holidays.value.all.filter(h => h.isWeekend && selectedHolidays.value[h.date]).map(h => h.date)).length;
+  const totalWeekdays = computed(() => {
+    return _uniq(
+      holidays.value.all
+        .filter(h => workdays.value.includes(new Date(h.jsDate).getDay()) && selectedHolidays.value[h.date])
+        .map(h => h.date)
+    ).length;
   });
 
-  const totalWeekdays = computed(() => {
-    return _uniq(holidays.value.all.filter(h => !h.isWeekend && selectedHolidays.value[h.date]).map(h => h.date)).length;
+  const totalWeekends = computed(() => {
+    return _uniq(
+      holidays.value.all
+        .filter(h => !workdays.value.includes(new Date(h.jsDate).getDay()) && selectedHolidays.value[h.date])
+        .map(h => h.date)
+    ).length;
   });
 
   return {
@@ -69,6 +80,7 @@ export const createHmcState = (): HmcState => {
     totalWeekdays,
     totalWeekends,
     selectedYear,
-    selectedHolidays
+    selectedHolidays,
+    workdays
   };
 }
