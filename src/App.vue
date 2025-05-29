@@ -11,31 +11,30 @@
             @click="selectYear(year)"
         >{{ year }}</a>
       </h3>
-      <div class="grand-totals mb-3">
+      <div class="mb-3">
         <h4>
-          Total: <span class="badge badge-warning">{{ totalWeekdays() }}</span> work days,
-          <span class="badge badge-secondary">{{ totalWeekends() }}</span> weekends
+          Total: <span class="badge text-bg-warning">{{ totalWeekdays() }}</span> work days,
+          <span class="badge text-bg-secondary">{{ totalWeekends() }}</span> weekends
         </h4>
       </div>
     </div>
     <div class="row">
-
       <div class="col-lg-3 col-sm-6" v-for="holidays, month in holidays.holidaysByMonth">
         <div class="card">
-          <h5 class="card-header">
+          <h5 class="card-header month-header">
             {{ month }}
-            <span class="float-right">
-              <span class="badge badge-warning">{{ totalWeekdays(month) }}</span>
-              <span class="badge badge-secondary">{{ totalWeekends(month) }}</span>
+            <span class="float-end">
+              <span class="badge text-bg-warning me-1">{{ totalWeekdays(month) }}</span>
+              <span class="badge text-bg-secondary">{{ totalWeekends(month) }}</span>
             </span>
           </h5>
           <div class="card-body">
             <p v-if="holidays.length == 0">No chagim in {{ month }}!</p>
-            <ul class="days">
+            <ul class="days list-unstyled">
               <li v-for="holiday in holidays" :class="{yt: holiday.yomtov}">
                 <label>
                   <input type="checkbox" :checked="selected[holiday.date]" @input="toggle(holiday.date, $event)"/>
-                  {{ format(holiday.date) }}
+                  {{ format(holiday.jsDate) }}
                   (<a :href="holiday.link" :title="JSON.stringify(holiday)" target="_blank">{{ holiday.title }}</a>)
                 </label>
               </li>
@@ -57,7 +56,6 @@ import format from 'date-fns/format';
 import _keyby from 'lodash.keyby';
 import _mapValues from 'lodash.mapvalues';
 import _uniq from 'lodash.uniq';
-import isWeekend from 'date-fns/is_weekend';
 import CornerBanner from './CornerBanner.vue';
 
 export default {
@@ -90,7 +88,7 @@ export default {
       });
     },
     format(date) {
-      return format(date, 'ddd MMM Do');
+      return format(date, 'ccc MMM do');
     },
     selectYear(year) {
       this.selectedYear = year;
@@ -106,9 +104,8 @@ export default {
 
       return _uniq(
           holidays
+              .filter(holiday => !holiday.isWeekend && this.selected[holiday.date])
               .map(holiday => holiday.date)
-              .filter(date => this.selected[date])
-              .filter(date => !isWeekend(date))
       ).length;
     },
     totalWeekends(month) {
@@ -118,9 +115,8 @@ export default {
 
       return _uniq(
           holidays
+              .filter(holiday => holiday.isWeekend && this.selected[holiday.date])
               .map(holiday => holiday.date)
-              .filter(date => this.selected[date])
-              .filter(isWeekend)
       ).length;
     }
   }
@@ -165,10 +161,5 @@ export default {
 
 h1, h2 {
   font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
 }
 </style>
