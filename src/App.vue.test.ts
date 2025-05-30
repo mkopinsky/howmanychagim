@@ -21,6 +21,7 @@ describe('App.vue', () => {
   afterEach(() => {
     wrapper.unmount();
     vi.clearAllMocks();
+    selectedYearSpy.mockClear();
   });
 
   it('renders the title and year selector', async () => {

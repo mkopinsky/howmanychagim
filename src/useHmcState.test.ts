@@ -52,7 +52,7 @@ describe('createHmcState', () => {
 
     it('loads holidays and sets selectedHolidays when selectedYear changes', async () => {
         const state = createHmcState();
-        
+
         state.selectedYear.value = 1900;
         await nextTick();
 
@@ -76,7 +76,7 @@ describe('createHmcState', () => {
         expect(state.totalWeekends.value).toBe(1); // Sunday
 
         // Change workdays to Sun-Thu (0-4)
-        state.workdays.value = [0,1,2,3,4];
+        state.workdays.value = [0, 1, 2, 3, 4];
         await nextTick();
         expect(state.totalWeekdays.value).toBe(3); // Sunday, Monday, Tuesday
         expect(state.totalWeekends.value).toBe(0);
@@ -86,5 +86,25 @@ describe('createHmcState', () => {
         await nextTick();
         expect(state.totalWeekdays.value).toBe(0);
         expect(state.totalWeekends.value).toBe(3);
+    });
+
+    it('does not double count different holidays with the same date', async () => {
+        const state = createHmcState();
+        const weekendHoliday = createMockHmcHoliday({ subcat: 'major', date: new Date(2025, 3, 13), title: 'Weekend Holiday', isWeekend: true, isYomTov: true });
+        const weekendDupe = { ...weekendHoliday, title: 'Weekend Holiday - Duplicate' };
+        const weekdayHoliday = createMockHmcHoliday({ subcat: 'major', date: new Date(2025, 3, 14), title: 'Weekday', isWeekend: false, isYomTov: true });
+        const weekdayDupe = { ...weekdayHoliday, title: 'Weekday - Duplicate' };
+        state.holidays.value.all.push(weekendHoliday, weekendDupe, weekdayHoliday, weekdayDupe);
+        state.holidays.value.holidaysByMonth.April = [weekendHoliday, weekendDupe, weekdayHoliday, weekdayDupe];
+        await nextTick();
+
+        state.selectedHolidays.value[weekendHoliday.date] = true;
+        state.selectedHolidays.value[weekendDupe.date] = true;
+        state.selectedHolidays.value[weekdayHoliday.date] = true;
+        state.selectedHolidays.value[weekdayDupe.date] = true;
+        await nextTick();
+        
+        expect(state.totalWeekdays.value).toBe(1);
+        expect(state.totalWeekends.value).toBe(1);
     });
 });

@@ -9,7 +9,7 @@
     </h5>
     <div class="card-body">
       <p v-if="holidays.length == 0">No chagim in {{ month }}!</p>
-      <ul class="days">
+      <ul class="days list-unstyled">
         <li v-for="holiday in holidays" :key="holiday.date" :class="{yt: holiday.yomtov}">
           <label>
             <input type="checkbox" :checked="selectedHolidays[holiday.date]" @change="(e) => selectedHolidays[holiday.date] = e.target.checked" />
